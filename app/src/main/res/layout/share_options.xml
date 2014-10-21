@@ -15,5 +15,12 @@
         android:layout_marginTop="@dimen/margin"/>
 
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/icon_from_top_margin"
+        android:padding="@dimen/button_padding"/>
+
+
 
 </LinearLayout>
