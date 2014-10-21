@@ -27,12 +27,14 @@
 
 
     <ImageButton
+        android:id="@+id/text_message_button"
         android:src="@drawable/textmessageimage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/button_padding"/>
 
     <ImageButton
+        android:id="@+id/email_button"
         android:src="@drawable/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,12 +50,14 @@
         android:layout_below="@id/top_buttons">
 
         <ImageButton
-            android:src="@drawable/facebook"
+        android:id="@+id/facebook_button"
+        android:src="@drawable/facebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/button_padding"/>
 
         <ImageButton
+            android:id="@+id/twitter_button"
             android:src="@drawable/twittericon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

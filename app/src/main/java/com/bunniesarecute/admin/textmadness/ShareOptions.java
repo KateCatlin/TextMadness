@@ -8,10 +8,12 @@ import android.view.MenuItem;
 
 public class ShareOptions extends Activity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_share_options);
+        setContentView(R.layout.share_options);
     }
 
 
