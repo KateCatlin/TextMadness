@@ -8,6 +8,7 @@
     <string name="generate_word">Insert Word</string>
     <string name="send_button">Send</string>
     <string name="select_word_type">Select Part of Speech</string>
+    <string name="select_share_option">Dare To Share??</string>
 
 
 </resources>
