@@ -9,6 +9,8 @@
     <string name="type_here">Type Your Text Here!</string>
     <string name="generate_word">Insert Word</string>
     <string name="send_button">Send</string>
+    <string name="select_share_option">Dare To Share??</string>
+
 
 
 </resources>
