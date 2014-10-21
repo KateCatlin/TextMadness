@@ -1,25 +1,33 @@
 package com.bunniesarecute.admin.textmadness;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
-/**
- * Created by katecatlin on 10/21/14.
- */
-public class WordSelect {
+
+public class WordSelect extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.word_select_screen);
+        setContentView(R.layout.activity_word_select);
+        if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction()
+                    .add(R.id.container, new WordSelectFragment())
+                    .commit();
+        }
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.word_select, menu);
         return true;
     }
 
@@ -34,4 +42,9 @@ public class WordSelect {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+
 }
