@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/share_header"
+        android:text="@string/select_share_option"
+        android:textColor="@color/teal"
+        android:textStyle="bold"
+        android:padding="@dimen/text_padding"
+        android:gravity="center"
+        android:textSize="@dimen/text_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"/>
+
+
+    <LinearLayout
+        android:id="@+id/top_buttons"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+    <ImageButton
+        android:src="@drawable/textmessageimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/button_padding"/>
+
+    <ImageButton
+        android:src="@drawable/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/button_padding"/>
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/top_buttons">
+
+        <ImageButton
+            android:src="@drawable/facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/button_padding"/>
+
+        <ImageButton
+            android:src="@drawable/twittericon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/button_padding"/>
+
+
+        </LinearLayout>
+
+
+
+</RelativeLayout>
