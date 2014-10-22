@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 
@@ -32,11 +34,6 @@ public class ShareOptions extends Activity implements OnClickListener {
         mTwitterButton = (ImageButton) findViewById(R.id.twitter_button);
         mTwitterButton.setOnClickListener(this);
 
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
     }
 
 
@@ -65,10 +62,13 @@ public class ShareOptions extends Activity implements OnClickListener {
         {
             case R.id.text_message_button:
                 getFragmentManager().beginTransaction()
-                        .add(R.id.container, new PlaceholderFragment())
+                        .add(R.id.container, new EmailMessageNextStepFragment())
                         .commit();
 
             case R.id.email_button:
+                getFragmentManager().beginTransaction()
+                        .add(R.id.container, new EmailMessageNextStepFragment())
+                        .commit();
 
             case R.id.facebook_button:
 
@@ -77,15 +77,60 @@ public class ShareOptions extends Activity implements OnClickListener {
 
     }
 
-    public static class PlaceholderFragment extends Fragment {
+    public static class TextMessageNextStepFragment extends Fragment {
 
-        public PlaceholderFragment() {
+        Button doneButton;
+        EditText whereToSend;
+        String numberOrEmail;
+
+        public TextMessageNextStepFragment() {
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_share_options2, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_share_textmessage, container, false);
+            numberOrEmail = "";
+
+            doneButton = (Button) rootView.findViewById(R.id.done_button);
+            whereToSend = (EditText) rootView.findViewById(R.id.info_enter_space);
+
+            doneButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    numberOrEmail = whereToSend.getText().toString();
+                }
+            });
+
+            return rootView;
+        }
+    }
+
+    public static class EmailMessageNextStepFragment extends Fragment {
+
+        Button doneButton;
+        EditText whereToSend;
+        String numberOrEmail;
+
+        public EmailMessageNextStepFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_share_textmessage, container, false);
+            numberOrEmail = "";
+
+            doneButton = (Button) rootView.findViewById(R.id.done_button);
+            whereToSend = (EditText) rootView.findViewById(R.id.info_enter_space);
+
+            doneButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    numberOrEmail = whereToSend.getText().toString();
+                }
+            });
+
             return rootView;
         }
     }
