@@ -8,11 +8,15 @@
     <string name="type_here">Type Your Text Here!</string>
     <string name="generate_word">Insert Word</string>
     <string name="send_button">Send</string>
+    <string name="title_activity_word_select">WordSelect</string>
+    <string name="hello_world">Hello world!</string>
     <string name="select_share_option">Dare To Share??</string>
+
     <string name="title_activity_share_options">ShareOptions</string>
     <string name="title_activity_share_options2">ShareOptions2</string>
     <string name="share_info_request_header1">Where do you want your message to go?</string>
     <string name="share_info_request_header2">Enter a Phone Number or Email Address </string>
     <string name="done_button">Done!</string>
+
 
 </resources>

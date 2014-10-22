@@ -29,12 +29,19 @@
             </intent-filter>
         </activity>
         <activity
+
             android:name=".ShareOptions"
             android:label="@string/title_activity_share_options" >
         </activity>
         <activity
             android:name=".ShareOptions2"
             android:label="@string/title_activity_share_options2" >
+            </activity>
+
+            <activity
+            android:name=".WordSelect"
+            android:label="@string/title_activity_word_select" >
+
         </activity>
     </application>
 
