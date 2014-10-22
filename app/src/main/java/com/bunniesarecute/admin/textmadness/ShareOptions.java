@@ -80,9 +80,10 @@ public class ShareOptions extends Activity implements OnClickListener {
 
             case R.id.email_button:
 
-
+                EmailMessageNextStepFragment emailFrag = new EmailMessageNextStepFragment();
+                emailFrag.setArguments(mBundle);
                 getFragmentManager().beginTransaction()
-                        .add(R.id.container, new EmailMessageNextStepFragment())
+                        .add(R.id.container, emailFrag)
                         .commit();
 
             case R.id.facebook_button:
@@ -94,9 +95,10 @@ public class ShareOptions extends Activity implements OnClickListener {
 
     public static class TextMessageNextStepFragment extends Fragment {
 
-        Button doneButton;
-        EditText whereToSend;
-        String phoneNumber;
+        private Button doneButton;
+        private EditText whereToSend;
+        private String phoneNumber;
+        private String messageToSend;
 
         public TextMessageNextStepFragment() {
         }
@@ -106,6 +108,7 @@ public class ShareOptions extends Activity implements OnClickListener {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_share_textmessage, container, false);
             phoneNumber = "";
+            messageToSend = savedInstanceState.getString("message").toString();
 
             doneButton = (Button) rootView.findViewById(R.id.done_button);
             whereToSend = (EditText) rootView.findViewById(R.id.info_enter_space);
