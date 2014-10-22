@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainEditText = (EditText) findViewById(R.id.edit_text);
-        Button insertWordButton = (Button)findViewById(R.id.generate_word_button);
+        insertWordButton = (Button) findViewById(R.id.generate_word_button);
         insertWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
