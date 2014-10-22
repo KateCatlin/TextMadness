@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bunniesarecute.admin.textmadness" >
 
-    <uses-permission android:name="android.permission.send_sms"/>
+    <uses-permission android:name="android.permission.send_sms" />
 
     <application
         android:allowBackup="true"
@@ -31,6 +31,10 @@
         <activity
             android:name=".ShareOptions"
             android:label="@string/title_activity_share_options" >
+        </activity>
+        <activity
+            android:name=".ShareOptions2"
+            android:label="@string/title_activity_share_options2" >
         </activity>
     </application>
 

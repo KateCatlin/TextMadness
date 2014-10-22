@@ -10,6 +10,7 @@
     <string name="send_button">Send</string>
     <string name="select_share_option">Dare To Share??</string>
     <string name="title_activity_share_options">ShareOptions</string>
-
+    <string name="title_activity_share_options2">ShareOptions2</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
