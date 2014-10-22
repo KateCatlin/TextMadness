@@ -7,25 +7,48 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 
 public class MainActivity extends Activity {
 
-//    static final int GENERATE_RANDOM_WORD_REQUEST = 41;
+    Button insertWordButton;
+    Button shareTextButton;
+    EditText mainEditText;
+    TextBuilder mTextBuilder = new TextBuilder();
+    String mFullTextMessage = "";
+
+    static final int GENERATE_RANDOM_WORD_REQUEST = 41;
+    static final String FULL_TEXT = "com.bunniesarecute.admin.textmadness.mainactivity.mFullTextMessage";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainEditText = (EditText) findViewById(R.id.edit_text);
+        insertWordButton = (Button) findViewById(R.id.generate_word_button);
+        insertWordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTextBuilder.addTextToStringArrayList(mainEditText.getText().toString());
+                Intent genWordIntent = new Intent(); // need word generating activity.
+                startActivityForResult(genWordIntent, GENERATE_RANDOM_WORD_REQUEST);
 
-//        Button insertWordButton = (Button)findViewById(R.id.generate_word_button);
-//        insertWordButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent genWordIntent = new Intent(); // need word generating activity.
-//                startActivityForResult(genWordIntent, GENERATE_RANDOM_WORD_REQUEST);
-//            }
-//        });
+                //once logic is set for getting random word, set it with mTextBuilder.addRandomWordToArrayList(*whatever the new random word is*)
+            }
+        });
+        shareTextButton = (Button) findViewById(R.id.send);
+        shareTextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTextBuilder.buildText();
+                mFullTextMessage = mTextBuilder.getTextFromMainEditText();
+                Intent sendMessageIntent = new Intent(); //new share message activity
+                sendMessageIntent.putExtra(FULL_TEXT, mFullTextMessage);
+                startActivity(sendMessageIntent);
+            }
+        });
     }
 
 
