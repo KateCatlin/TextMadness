@@ -1,6 +1,7 @@
 package com.bunniesarecute.admin.textmadness;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,27 +9,30 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.ArrayList;
-
 
 public class MainActivity extends Activity {
 
-    Button generateWordButton;
+    Button insertWordButton;
     Button shareTextButton;
     EditText mainEditText;
     TextBuilder mTextBuilder = new TextBuilder();
     String mFullTextMessage = "";
+
+    static final int GENERATE_RANDOM_WORD_REQUEST = 41;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainEditText = (EditText) findViewById(R.id.edit_text);
-        generateWordButton = (Button) findViewById(R.id.generate_word_button);
-        generateWordButton.setOnClickListener(new View.OnClickListener() {
+        Button insertWordButton = (Button)findViewById(R.id.generate_word_button);
+        insertWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mTextBuilder.addTextToStringArrayList(mainEditText.getText().toString());
+                Intent genWordIntent = new Intent(); // need word generating activity.
+                startActivityForResult(genWordIntent, GENERATE_RANDOM_WORD_REQUEST);
 
                 //once logic is set for getting random word, set it with mTextBuilder.addRandomWordToArrayList(*whatever the new random word is*)
             }
@@ -64,4 +68,13 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if (requestCode == GENERATE_RANDOM_WORD_REQUEST) {
+//            if (requestCode == RESULT_OK) {
+//                // use random word here
+//            }
+//        }
+//    }
 }
