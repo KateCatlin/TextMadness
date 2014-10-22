@@ -81,7 +81,7 @@ public class ShareOptions extends Activity implements OnClickListener {
 
         Button doneButton;
         EditText whereToSend;
-        String numberOrEmail;
+        String phoneNumber;
 
         public TextMessageNextStepFragment() {
         }
@@ -90,7 +90,7 @@ public class ShareOptions extends Activity implements OnClickListener {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_share_textmessage, container, false);
-            numberOrEmail = "";
+            phoneNumber = "";
 
             doneButton = (Button) rootView.findViewById(R.id.done_button);
             whereToSend = (EditText) rootView.findViewById(R.id.info_enter_space);
@@ -98,7 +98,7 @@ public class ShareOptions extends Activity implements OnClickListener {
             doneButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    numberOrEmail = whereToSend.getText().toString();
+                   phoneNumber = whereToSend.getText().toString();
                 }
             });
 
@@ -110,7 +110,7 @@ public class ShareOptions extends Activity implements OnClickListener {
 
         Button doneButton;
         EditText whereToSend;
-        String numberOrEmail;
+        String emailAddress;
 
         public EmailMessageNextStepFragment() {
         }
@@ -118,8 +118,8 @@ public class ShareOptions extends Activity implements OnClickListener {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_share_textmessage, container, false);
-            numberOrEmail = "";
+            View rootView = inflater.inflate(R.layout.fragment_share_emailmessage, container, false);
+            emailAddress = "";
 
             doneButton = (Button) rootView.findViewById(R.id.done_button);
             whereToSend = (EditText) rootView.findViewById(R.id.info_enter_space);
@@ -127,7 +127,7 @@ public class ShareOptions extends Activity implements OnClickListener {
             doneButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    numberOrEmail = whereToSend.getText().toString();
+                    emailAddress = whereToSend.getText().toString();
                 }
             });
 
