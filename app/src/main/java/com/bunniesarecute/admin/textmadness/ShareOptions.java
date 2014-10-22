@@ -117,7 +117,7 @@ public class ShareOptions extends Activity implements OnClickListener {
                 @Override
                 public void onClick(View view) {
                    phoneNumber = whereToSend.getText().toString();
-
+                   sendTextMessage(messageToSend, phoneNumber);
 
                 }
             });
