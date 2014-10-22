@@ -5,9 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.view.View;
-import android.content.Intent;
+import android.widget.Button;
 import android.widget.EditText;
 
 
@@ -45,7 +44,7 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 mTextBuilder.buildText();
                 mFullTextMessage = mTextBuilder.getTextFromMainEditText();
-                Intent sendMessageIntent = new Intent(); //new share message activity
+                Intent sendMessageIntent = new Intent(getApplicationContext(), ShareOptions.class); //new share message activity
                 sendMessageIntent.putExtra(FULL_TEXT, mFullTextMessage);
                 startActivity(sendMessageIntent);
             }

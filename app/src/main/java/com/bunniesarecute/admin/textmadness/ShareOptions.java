@@ -31,6 +31,7 @@ public class ShareOptions extends Activity implements OnClickListener {
         setContentView(R.layout.share_options);
         Intent intent = getIntent();
         messageText = intent.getStringExtra("FULL_TEXT");
+        mBundle = new Bundle();
         mBundle.putString("message", messageText);
 
 
@@ -75,8 +76,9 @@ public class ShareOptions extends Activity implements OnClickListener {
                 TextMessageNextStepFragment textFrag = new TextMessageNextStepFragment();
                 textFrag.setArguments(mBundle);
                 getFragmentManager().beginTransaction()
-                        .add(R.id.container, textFrag)
+                        .replace(R.id.container, textFrag)
                         .commit();
+                break;
 
             case R.id.email_button:
 
@@ -85,6 +87,7 @@ public class ShareOptions extends Activity implements OnClickListener {
                 getFragmentManager().beginTransaction()
                         .add(R.id.container, emailFrag)
                         .commit();
+                break;
 
             case R.id.facebook_button:
 
@@ -108,7 +111,8 @@ public class ShareOptions extends Activity implements OnClickListener {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_share_textmessage, container, false);
             phoneNumber = "";
-            messageToSend = savedInstanceState.getString("message").toString();
+            Bundle bundle = this.getArguments();
+            messageToSend = bundle.getString("message");
 
             doneButton = (Button) rootView.findViewById(R.id.done_button);
             whereToSend = (EditText) rootView.findViewById(R.id.info_enter_space);

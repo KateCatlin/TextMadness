@@ -7,7 +7,7 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
-                tools:context="com.bunniesarecute.admin.textmadness.ShareOptions.TextMessageNextStepFragment">
+                tools:context="com.bunniesarecute.admin.textmadness.ShareOptions.EmailMessageNextStepFragment">
 
 
     <TextView
@@ -15,7 +15,7 @@
         android:text="@string/share_info_request_header1"
         android:textColor="@color/teal"
         android:textSize="19sp"
-        android:layout_marginTop="@dimen/margin"
+        android:layout_marginTop="@dimen/frag_top_margin"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -25,7 +25,7 @@
         android:id="@+id/info_enter_space"
         android:hint="@string/share_info_email_message"
         android:textColorHint="@color/light_teal"
-        android:layout_marginTop="@dimen/margin"
+        android:layout_marginTop="@dimen/frag_margin"
         android:layout_below="@+id/share_info_request_header"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
         android:text="@string/done_button"
         android:background="@color/light_grey"
         android:textColor="@color/teal"
-        android:layout_marginTop="@dimen/margin"
+        android:layout_marginTop="@dimen/frag_margin"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
