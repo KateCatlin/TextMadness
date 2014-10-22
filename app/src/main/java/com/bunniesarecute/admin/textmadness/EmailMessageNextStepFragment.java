@@ -46,7 +46,7 @@ public class EmailMessageNextStepFragment extends Fragment {
                 intent.putExtra(Intent.EXTRA_TEXT, messageToSend);
 
                 startActivity(Intent.createChooser(intent, "send email"));
-                cont.startContinueFragment();
+
             }
         });
 
