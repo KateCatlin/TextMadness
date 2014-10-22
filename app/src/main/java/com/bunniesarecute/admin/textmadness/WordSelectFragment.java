@@ -1,5 +1,6 @@
 package com.bunniesarecute.admin.textmadness;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -48,6 +49,7 @@ import java.util.List;
  */
 
 public class WordSelectFragment extends Fragment {
+    POSAdapter mAdapter;
 
     public WordSelectFragment() {
     }
@@ -55,6 +57,7 @@ public class WordSelectFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        mAdapter = new POSAdapter(getActivity(), WordSelect.posObjectArrayList);
     }
 
     @Override
@@ -69,8 +72,21 @@ public class WordSelectFragment extends Fragment {
 
         ListView listView = (ListView) rootView.findViewById(R.id.listview);
 
-        POSAdapter mAdapter = new POSAdapter(getActivity(), WordSelect.posObjectArrayList);
         listView.setAdapter(mAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowID) {
+                POSObject thisObject = mAdapter.getItem(position);
+                Intent intent = new Intent();
+
+                intent.putExtra("RANDOM_WORD", "*****");
+
+                getActivity().setResult(Activity.RESULT_OK, intent);
+                getActivity().finish();
+            }
+
+        });
 
 
         return rootView;
