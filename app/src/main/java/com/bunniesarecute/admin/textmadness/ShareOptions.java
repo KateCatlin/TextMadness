@@ -1,11 +1,14 @@
 package com.bunniesarecute.admin.textmadness;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 
@@ -28,6 +31,12 @@ public class ShareOptions extends Activity implements OnClickListener {
         mFacebookButton.setOnClickListener(this);
         mTwitterButton = (ImageButton) findViewById(R.id.twitter_button);
         mTwitterButton.setOnClickListener(this);
+
+        if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction()
+                    .add(R.id.container, new PlaceholderFragment())
+                    .commit();
+        }
     }
 
 
@@ -55,6 +64,9 @@ public class ShareOptions extends Activity implements OnClickListener {
         switch (view.getId())
         {
             case R.id.text_message_button:
+                getFragmentManager().beginTransaction()
+                        .add(R.id.container, new PlaceholderFragment())
+                        .commit();
 
             case R.id.email_button:
 
@@ -63,5 +75,18 @@ public class ShareOptions extends Activity implements OnClickListener {
             case R.id.twitter_button:
         }
 
+    }
+
+    public static class PlaceholderFragment extends Fragment {
+
+        public PlaceholderFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_share_options2, container, false);
+            return rootView;
+        }
     }
 }
