@@ -106,7 +106,7 @@ public class ShareOptions extends Activity implements OnClickListener {
     }
 
 
-    public static class TextMessageNextStepFragment extends Fragment {
+    public class TextMessageNextStepFragment extends Fragment {
 
         private Button doneButton;
         private EditText whereToSend;
@@ -132,6 +132,7 @@ public class ShareOptions extends Activity implements OnClickListener {
                 public void onClick(View view) {
                    phoneNumber = whereToSend.getText().toString();
                    sendTextMessage(messageToSend, phoneNumber);
+                    replaceFragment();
 
                 }
             });
@@ -144,7 +145,7 @@ public class ShareOptions extends Activity implements OnClickListener {
         }
     }
 
-    public static class EmailMessageNextStepFragment extends Fragment {
+    public class EmailMessageNextStepFragment extends Fragment {
 
         private Button doneButton;
         private EditText whereToSend;
@@ -180,19 +181,52 @@ public class ShareOptions extends Activity implements OnClickListener {
                     startActivity(Intent.createChooser(intent, "send email"));
                 }
             });
+            replaceFragment();
 
             return rootView;
         }
     }
 
-    public static class ContinueOrNot{
+    public class ContinueOrNot extends Fragment implements OnClickListener{
+
+        private Button yesButton;
+        private Button noButton;
 
         public ContinueOrNot(){
 
         }
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-            View rootview = inflater.inflate()
+            View rootview = inflater.inflate(R.layout.continue_fragment, container, false);
+
+            yesButton = (Button) rootview.findViewById(R.id.yes_button);
+            yesButton.setOnClickListener(this);
+            noButton = (Button) rootview.findViewById(R.id.no_button);
+            noButton.setOnClickListener(this);
+
+            return rootview;
         }
+
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.yes_button:
+                    getFragmentManager().beginTransaction()
+                            .remove(this)
+                            .commit();
+
+                case R.id.no_button:
+                    Intent goHome = new Intent(view.getContext(), MainActivity.class);
+                    startActivity(goHome);
+            }
+
+        }
+    }
+
+    public void replaceFragment(){
+        getFragmentManager().beginTransaction()
+                .replace(R.id.container, new ContinueOrNot())
+                .commit();
     }
 }

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/continue_fragment"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:tools="com.bunniesarecute.admin.textmadness.ShareOptions.ContinueOrNot">
 
     <LinearLayout
         android:orientation="vertical"
@@ -21,19 +23,25 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:weightSum="1"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <Button
+                android:id="@+id/yes_button"
                 android:text="@string/send_again_yes"
-                android:layout_weight="1"
+                android:textColor="@color/light_teal"
+                android:padding="@dimen/button_padding"
+                android:background="@color/light_grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <Button
+                android:id="@+id/no_button"
                 android:text="@string/send_again_no"
-                android:layout_weight=".5"
+                android:textColor="@color/light_teal"
+                android:padding="@dimen/button_padding"
+                android:background="@color/light_grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
