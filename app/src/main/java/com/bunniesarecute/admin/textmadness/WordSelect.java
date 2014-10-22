@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 
 public class WordSelect extends Activity {
 
+    final public static String[] partsOfSpeech = new String[] { "Adjective", "Noun", "Verb", "Adverb" };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
