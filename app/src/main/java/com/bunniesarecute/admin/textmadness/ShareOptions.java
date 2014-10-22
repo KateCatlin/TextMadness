@@ -136,9 +136,11 @@ public class ShareOptions extends Activity implements OnClickListener {
 
     public static class EmailMessageNextStepFragment extends Fragment {
 
-        Button doneButton;
-        EditText whereToSend;
-        String emailAddress;
+        private Button doneButton;
+        private EditText whereToSend;
+        private String emailAddress;
+        private String emailSubject;
+        private String messageToSend;
 
         public EmailMessageNextStepFragment() {
         }
@@ -147,7 +149,10 @@ public class ShareOptions extends Activity implements OnClickListener {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_share_emailmessage, container, false);
+            emailSubject = "My MadText";
             emailAddress = "";
+            Bundle bundle = this.getArguments();
+            messageToSend = bundle.getString("message");
 
             doneButton = (Button) rootView.findViewById(R.id.done_button);
             whereToSend = (EditText) rootView.findViewById(R.id.info_enter_space);
@@ -156,6 +161,13 @@ public class ShareOptions extends Activity implements OnClickListener {
                 @Override
                 public void onClick(View view) {
                     emailAddress = whereToSend.getText().toString();
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("message/rfc822");
+                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailAddress});
+                    intent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
+                    intent.putExtra(Intent.EXTRA_TEXT, messageToSend);
+
+                    startActivity(Intent.createChooser(intent, "send email"));
                 }
             });
 
