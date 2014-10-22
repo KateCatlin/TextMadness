@@ -2,7 +2,9 @@ package com.bunniesarecute.admin.textmadness;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,15 +18,20 @@ import android.widget.ImageButton;
 
 public class ShareOptions extends Activity implements OnClickListener {
 
+    private String messageText;
     private ImageButton mTextMessageButton;
     private ImageButton mEmailMessageButton;
     private ImageButton mFacebookButton;
     private ImageButton mTwitterButton;
+    private Bundle mBundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.share_options);
+        Intent intent = getIntent();
+        messageText = intent.getStringExtra("FULL_TEXT");
+
         mTextMessageButton = (ImageButton) findViewById(R.id.text_message_button);
         mTextMessageButton.setOnClickListener(this);
         mEmailMessageButton = (ImageButton) findViewById(R.id.email_button);
@@ -33,6 +40,7 @@ public class ShareOptions extends Activity implements OnClickListener {
         mFacebookButton.setOnClickListener(this);
         mTwitterButton = (ImageButton) findViewById(R.id.twitter_button);
         mTwitterButton.setOnClickListener(this);
+        mBundle = null;
 
     }
 
@@ -61,8 +69,10 @@ public class ShareOptions extends Activity implements OnClickListener {
         switch (view.getId())
         {
             case R.id.text_message_button:
+                String
+
                 getFragmentManager().beginTransaction()
-                        .add(R.id.container, new EmailMessageNextStepFragment())
+                        .add(R.id.container, new TextMessageNextStepFragment())
                         .commit();
 
             case R.id.email_button:
@@ -99,10 +109,16 @@ public class ShareOptions extends Activity implements OnClickListener {
                 @Override
                 public void onClick(View view) {
                    phoneNumber = whereToSend.getText().toString();
+
+
                 }
             });
 
             return rootView;
+        }
+
+        public void sendTextMessage(String message, String phoneNumber){
+            SmsManager.getDefault().sendTextMessage(phoneNumber, null, message, null, null);
         }
     }
 
