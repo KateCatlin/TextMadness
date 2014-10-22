@@ -16,27 +16,8 @@ public class MainActivity extends Activity {
     Button generateWordButton;
     Button shareTextButton;
     EditText mainEditText;
-    ArrayList<String> editTextStrings = new ArrayList<String>();
-
-    public void addTextToStringArrayList(String text) {
-        int i;
-        String[] splitText = text.split(" ");
-        for (i = 0; i < splitText.length; i++) {
-            editTextStrings.add(splitText[i]);
-        }
-    }
-
-    public void addRandomWordToArrayList(String word) {
-        editTextStrings.add(word);
-    }
-//String builder
-    public String buildText() {
-        String completedTextMessage = "";
-        for(String current: editTextStrings) {
-            completedTextMessage = (completedTextMessage + " " + current);
-        }
-        return completedTextMessage;
-    }
+    TextBuilder mTextBuilder = new TextBuilder();
+    String mFullTextMessage = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +28,19 @@ public class MainActivity extends Activity {
         generateWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addTextToStringArrayList(mainEditText.getText().toString());
+                mTextBuilder.addTextToStringArrayList(mainEditText.getText().toString());
+
+                //once logic is set for getting random word, set it with mTextBuilder.addRandomWordToArrayList(*whatever the new random word is*)
             }
         });
         shareTextButton = (Button) findViewById(R.id.send);
         shareTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mTextBuilder.buildText();
+                mFullTextMessage = mTextBuilder.getTextFromMainEditText();
 
+                //the full message should be set to be sent to shareActivity
             }
         });
     }
