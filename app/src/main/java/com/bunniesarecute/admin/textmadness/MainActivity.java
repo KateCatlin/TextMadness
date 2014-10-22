@@ -72,12 +72,14 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == GENERATE_RANDOM_WORD_REQUEST) {
-//            if (requestCode == RESULT_OK) {
-//                // use random word here
-//            }
-//        }
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == GENERATE_RANDOM_WORD_REQUEST) {
+            if (requestCode == RESULT_OK) {
+                // use random word here
+                mainEditText = (EditText) findViewById(R.id.edit_text);
+                mainEditText.append(" Random word");  //  Please replace me with the real thing
+            }
+        }
+    }
 }
