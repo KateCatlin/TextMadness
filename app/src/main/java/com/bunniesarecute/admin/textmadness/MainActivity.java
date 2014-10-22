@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 mTextBuilder.addTextToStringArrayList(mainEditText.getText().toString());
-                Intent genWordIntent = new Intent(); // need word generating activity.
+                Intent genWordIntent = new Intent(mainEditText.getContext(), WordSelect.class); 
                 startActivityForResult(genWordIntent, GENERATE_RANDOM_WORD_REQUEST);
 
                 //once logic is set for getting random word, set it with mTextBuilder.addRandomWordToArrayList(*whatever the new random word is*)
