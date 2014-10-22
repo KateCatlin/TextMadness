@@ -105,7 +105,7 @@ public class ShareOptions extends Activity implements OnClickListener {
         Toast.makeText(this, "Coming Soon in Version 2.Dan!", Toast.LENGTH_SHORT);
     }
 
-
+/*
     public class TextMessageNextStepFragment extends Fragment {
 
         private Button doneButton;
@@ -132,10 +132,11 @@ public class ShareOptions extends Activity implements OnClickListener {
                 public void onClick(View view) {
                    phoneNumber = whereToSend.getText().toString();
                    sendTextMessage(messageToSend, phoneNumber);
-                    replaceFragment();
+                   replaceFragment();
 
                 }
             });
+
 
             return rootView;
         }
@@ -179,9 +180,10 @@ public class ShareOptions extends Activity implements OnClickListener {
                     intent.putExtra(Intent.EXTRA_TEXT, messageToSend);
 
                     startActivity(Intent.createChooser(intent, "send email"));
+                    replaceFragment();
                 }
             });
-            replaceFragment();
+
 
             return rootView;
         }
@@ -228,5 +230,5 @@ public class ShareOptions extends Activity implements OnClickListener {
         getFragmentManager().beginTransaction()
                 .replace(R.id.container, new ContinueOrNot())
                 .commit();
-    }
+    }*/
 }
