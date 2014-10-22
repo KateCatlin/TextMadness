@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 
 public class ShareOptions extends Activity implements OnClickListener {
@@ -76,7 +77,7 @@ public class ShareOptions extends Activity implements OnClickListener {
                 TextMessageNextStepFragment textFrag = new TextMessageNextStepFragment();
                 textFrag.setArguments(mBundle);
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.container, textFrag)
+                        .add(R.id.container, textFrag)
                         .commit();
                 break;
 
@@ -90,11 +91,20 @@ public class ShareOptions extends Activity implements OnClickListener {
                 break;
 
             case R.id.facebook_button:
+                popUpVersionToast();
+                break;
 
             case R.id.twitter_button:
+                popUpVersionToast();
+                break;
         }
 
     }
+
+    public void popUpVersionToast(){
+        Toast.makeText(this, "Coming Soon in Version 2.Dan!", Toast.LENGTH_SHORT);
+    }
+
 
     public static class TextMessageNextStepFragment extends Fragment {
 
