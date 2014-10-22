@@ -10,5 +10,6 @@
     <string name="send_button">Send</string>
     <string name="title_activity_word_select">WordSelect</string>
     <string name="hello_world">Hello world!</string>
+    <string name="select_share_option">Dare To Share??</string>
 
 </resources>
