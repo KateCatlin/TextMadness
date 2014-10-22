@@ -75,7 +75,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == GENERATE_RANDOM_WORD_REQUEST) {
-            if (requestCode == RESULT_OK) {
+            if (resultCode == RESULT_OK) {
                 // use random word here
                 mainEditText = (EditText) findViewById(R.id.edit_text);
                 mainEditText.append(" Random word");  //  Please replace me with the real thing
