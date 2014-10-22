@@ -184,4 +184,15 @@ public class ShareOptions extends Activity implements OnClickListener {
             return rootView;
         }
     }
+
+    public static class ContinueOrNot{
+
+        public ContinueOrNot(){
+
+        }
+
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+            View rootview = inflater.inflate()
+        }
+    }
 }
