@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class POSAdapter extends ArrayAdapter<POSObject>{
     private final Context mContext;
 
-    ArrayList<POSObject> thisArrayList = WordSelect.posObjectArrayList;
+    ArrayList<POSObject> thisArrayList;
 
 
     public POSAdapter(Context context, ArrayList<POSObject> thisArrayList) {
@@ -35,6 +35,8 @@ public class POSAdapter extends ArrayAdapter<POSObject>{
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View thisRow = inflater.inflate(R.layout.row_part_of_speech, parent, false);
         POSObject thisObject = getItem(position);
+
+        thisArrayList = WordSelect.posObjectArrayList;
 
         TextView mainText = (TextView) thisRow.findViewById(R.id.part_of_speech_textview);
         mainText.setText(thisObject.getpOS());

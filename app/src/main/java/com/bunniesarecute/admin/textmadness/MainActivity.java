@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
     TextBuilder mTextBuilder = new TextBuilder();
     String mFullTextMessage = "";
 
-    static final int GENERATE_RANDOM_WORD_REQUEST = 41;
+    public static final int GENERATE_RANDOM_WORD_REQUEST = 37;
     static final String FULL_TEXT = "com.bunniesarecute.admin.textmadness.mainactivity.mFullTextMessage";
 
 
@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 mTextBuilder.addTextToStringArrayList(mainEditText.getText().toString());
-                Intent genWordIntent = new Intent(mainEditText.getContext(), WordSelect.class); 
+                Intent genWordIntent = new Intent(mainEditText.getContext(), WordSelect.class);
                 startActivityForResult(genWordIntent, GENERATE_RANDOM_WORD_REQUEST);
 
                 //once logic is set for getting random word, set it with mTextBuilder.addRandomWordToArrayList(*whatever the new random word is*)
@@ -74,11 +74,14 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mainEditText = (EditText) findViewById(R.id.edit_text);
+//        mainEditText.setText(mainEditText.getText() + " appended str");  //  Please replace me with the real thing
         if (requestCode == GENERATE_RANDOM_WORD_REQUEST) {
-            if (requestCode == RESULT_OK) {
+            if (resultCode == RESULT_OK) {
                 // use random word here
                 mainEditText = (EditText) findViewById(R.id.edit_text);
-                mainEditText.append(" Random word");  //  Please replace me with the real thing
+                mainEditText.setText(mainEditText.getText() + data.getStringExtra("RANDOM_WORD"));
+                
             }
         }
     }
