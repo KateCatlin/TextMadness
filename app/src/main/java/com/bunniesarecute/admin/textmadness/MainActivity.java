@@ -19,6 +19,7 @@ public class MainActivity extends Activity {
     String mFullTextMessage = "";
 
     static final int GENERATE_RANDOM_WORD_REQUEST = 41;
+    static final String FULL_TEXT = "com.bunniesarecute.admin.textmadness.mainactivity.mFullTextMessage";
 
 
     @Override
@@ -43,8 +44,9 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 mTextBuilder.buildText();
                 mFullTextMessage = mTextBuilder.getTextFromMainEditText();
-
-                //the full message should be set to be sent to shareActivity
+                Intent sendMessageIntent = new Intent(); //new share message activity
+                sendMessageIntent.putExtra(FULL_TEXT, mFullTextMessage);
+                startActivity(sendMessageIntent);
             }
         });
     }
