@@ -22,7 +22,7 @@
 
     <EditText
         android:id="@+id/info_enter_space"
-        android:hint="@string/share_info_request_header2"
+        android:hint="@string/share_info_text_message"
         android:textColorHint="@color/light_teal"
         android:layout_marginTop="@dimen/margin"
         android:layout_below="@+id/share_info_request_header"

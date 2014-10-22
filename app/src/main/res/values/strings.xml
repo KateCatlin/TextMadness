@@ -16,6 +16,7 @@
     <string name="title_activity_share_options2">ShareOptions2</string>
     <string name="share_info_request_header1">Where do you want your message to go?</string>
     <string name="share_info_text_message">Enter a Phone Number </string>
+    <string name="share_info_email_message">Enter an Email Address</string>
     <string name="done_button">Done!</string>
 
 
