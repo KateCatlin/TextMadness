@@ -31,6 +31,8 @@ public class ShareOptions extends Activity implements OnClickListener {
         setContentView(R.layout.share_options);
         Intent intent = getIntent();
         messageText = intent.getStringExtra("FULL_TEXT");
+        mBundle.putString("message", messageText);
+
 
         mTextMessageButton = (ImageButton) findViewById(R.id.text_message_button);
         mTextMessageButton.setOnClickListener(this);
@@ -40,7 +42,7 @@ public class ShareOptions extends Activity implements OnClickListener {
         mFacebookButton.setOnClickListener(this);
         mTwitterButton = (ImageButton) findViewById(R.id.twitter_button);
         mTwitterButton.setOnClickListener(this);
-        mBundle = null;
+
 
     }
 
@@ -69,13 +71,16 @@ public class ShareOptions extends Activity implements OnClickListener {
         switch (view.getId())
         {
             case R.id.text_message_button:
-                String
 
+                TextMessageNextStepFragment textFrag = new TextMessageNextStepFragment();
+                textFrag.setArguments(mBundle);
                 getFragmentManager().beginTransaction()
-                        .add(R.id.container, new TextMessageNextStepFragment())
+                        .add(R.id.container, textFrag)
                         .commit();
 
             case R.id.email_button:
+
+
                 getFragmentManager().beginTransaction()
                         .add(R.id.container, new EmailMessageNextStepFragment())
                         .commit();
