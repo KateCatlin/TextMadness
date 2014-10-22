@@ -1,17 +1,31 @@
 package com.bunniesarecute.admin.textmadness;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class MainActivity extends Activity {
+
+//    static final int GENERATE_RANDOM_WORD_REQUEST = 41;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        Button insertWordButton = (Button)findViewById(R.id.generate_word_button);
+//        insertWordButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent genWordIntent = new Intent(); // need word generating activity.
+//                startActivityForResult(genWordIntent, GENERATE_RANDOM_WORD_REQUEST);
+//            }
+//        });
     }
 
 
@@ -33,4 +47,13 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if (requestCode == GENERATE_RANDOM_WORD_REQUEST) {
+//            if (requestCode == RESULT_OK) {
+//                // use random word here
+//            }
+//        }
+//    }
 }
