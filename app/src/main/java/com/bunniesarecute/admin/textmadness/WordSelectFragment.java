@@ -78,6 +78,7 @@ public class WordSelectFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowID) {
                 POSObject thisObject = mAdapter.getItem(position);
+                DictionaryAPI dictionary = new DictionaryAPI();
                 Intent intent = new Intent();
 
                 intent.putExtra("RANDOM_WORD", "*****");
