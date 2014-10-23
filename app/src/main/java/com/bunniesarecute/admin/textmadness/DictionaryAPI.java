@@ -4,6 +4,10 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,18 +15,19 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Random;
 
 /**
  * Created by admin on 10/22/14.
  */
-public class DictionaryAPI extends AsyncTask<String, void, String[]> {
+public class DictionaryAPI extends AsyncTask<String, void, String> {
 
-    public void buildUrlString(String badWord, String wordType) {
+/*    public void buildUrlString(String badWord, String wordType) {
         String urlPartOne = "http://api.wordnik.com:80/v4/words.json/reverseDictionary?query=";
         String urlPartTwo = "&includePartOfSpeech=";
         String urlPartThree = "&maxCorpusCount=1&minLength=1&includeTags=false&limit=10&api_key=";
         searchURL = urlPartOne + badWord + urlPartTwo + wordType + urlPartThree + APIkey;
-    }
+    }*/
 
 
     @Override
@@ -100,13 +105,48 @@ public class DictionaryAPI extends AsyncTask<String, void, String[]> {
             }
         }
 
+        try{
+            
+        }
 
-        return dictionaryWordsStr;
+
+        return null;
+    }
+
+    private String getWordFromJSON(String wordListString) throws JSONException
+    {
+        Random randWordSelector = new Random();
+        final String COMPLETE_RESULTS = "results";
+        //The word that has to be parsed.
+        final String DEFINED_WORD = "word";
+        final int LIMIT_RESULTS_CALLED = 10;
+
+        //Make a new JSON Object from JSONString
+        JSONObject jsonObject = new JSONObject(wordListString);
+        JSONArray wordsArray = new JSONArray(COMPLETE_RESULTS);
+
+        String[] wordsReturned = new String[LIMIT_RESULTS_CALLED];
+
+        for(int i = 0; i < wordsArray.length(); i++) {
+
+            String aWordFound;
+
+            //get JsonObjects from Array
+            JSONObject aWordDefinition = wordsArray.getJSONObject(i);
+
+            aWordFound = aWordDefinition.getString(DEFINED_WORD);
+
+            wordsReturned[i] = aWordFound;
+        }
+        return wordsReturned[randWordSelector.nextInt(wordsReturned.length)];
+
+    }
+
     }
 
 
 
-}
+
 
 
     // http://developer.wordnik.com/v4
