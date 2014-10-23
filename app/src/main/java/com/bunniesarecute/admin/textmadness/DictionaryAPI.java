@@ -20,7 +20,7 @@ import java.util.Random;
 /**
  * Created by admin on 10/22/14.
  */
-public class DictionaryAPI extends AsyncTask<String, void, String> {
+public class DictionaryAPI extends AsyncTask<String, Void, String> {
 
 /*    public void buildUrlString(String badWord, String wordType) {
         String urlPartOne = "http://api.wordnik.com:80/v4/words.json/reverseDictionary?query=";
@@ -106,7 +106,9 @@ public class DictionaryAPI extends AsyncTask<String, void, String> {
         }
 
         try{
-            
+            getWordFromJSON(dictionaryWordsStr);
+        }catch (JSONException e){
+            Log.e("JSON error", e.getMessage());
         }
 
 
@@ -142,7 +144,22 @@ public class DictionaryAPI extends AsyncTask<String, void, String> {
 
     }
 
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+
+
     }
+
+
+    public interface DictionaryInterface{
+
+        String getWordFound(String wordFound);
+    }
+
+}
+
+
 
 
 
