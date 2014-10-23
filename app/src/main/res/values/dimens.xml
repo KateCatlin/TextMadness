@@ -9,5 +9,7 @@
     <dimen name="icon_from_top_margin">100dp</dimen>
     <dimen name="icon_side_margin">50dp</dimen>
     <dimen name="icon_from_bottom_margin">40dp</dimen>
+    <dimen name="frag_top_margin">110dp</dimen>
+    <dimen name="frag_margin">25dp</dimen>
 
 </resources>
