@@ -1,6 +1,5 @@
 package com.bunniesarecute.admin.textmadness;
 
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -22,6 +21,8 @@ import java.util.Random;
  */
 public class DictionaryAPI extends AsyncTask<String, Void, String> {
 
+    public DictionaryInterface mDictionaryInterface;
+
 /*    public void buildUrlString(String badWord, String wordType) {
         String urlPartOne = "http://api.wordnik.com:80/v4/words.json/reverseDictionary?query=";
         String urlPartTwo = "&includePartOfSpeech=";
@@ -29,30 +30,46 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
         searchURL = urlPartOne + badWord + urlPartTwo + wordType + urlPartThree + APIkey;
     }*/
 
-
+    String dictionaryWordsStr = null;
     @Override
     protected String doInBackground(String... strings) {
 
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
 
-        String dictionaryWordsStr = null;
+
         String partOfSpeechSelected = strings[0];
         String randomDirtyWord = strings[1];
+        final String URI_BASE = "http://api.wordnik.com/v4/words.json/reverseDictionary?query=";
+        final String URI_POS = "&includePartOfSpeech=";
+        final String URI_END = "&maxCorpusCount=1&minLength=1&includeTags=false&limit=10&api_key=";
         final String API_KEY = "6aa015c0d84b01a6c205f6848a6dea42bcb91d757d4341dde";
         URL urlToUse = null;
 
+/*        api.wordnik.com/v4/words.json/reverseDictionary?query=anal&includePartOfSpeech=noun
+                &maxCorpusCount=1&minLength=1&includeTags=false&limit=10&api_key=6aa015c0d84b01a6c205f6848a6dea42bcb91d757d4341dde*/
+
         try {
-            Uri.Builder dictionaryUri = new Uri.Builder();
-            dictionaryUri.scheme("http").authority("developer.wordnik.com/v4").appendPath("words.json")
+/*            Uri.Builder dictionaryUri = new Uri.Builder();
+            dictionaryUri.scheme("http").authority("api.wordnik.com").appendPath("v4").appendPath("words.json")
                     .appendPath("reverseDictionary").appendQueryParameter("query", randomDirtyWord)
                     .appendQueryParameter("includePartOfSpeech", partOfSpeechSelected)
                     .appendQueryParameter("maxCorpusCount", "1").appendQueryParameter("minLength", "1")
                     .appendQueryParameter("includeTags", "false").appendQueryParameter("skip", "0")
-                    .appendQueryParameter("limit", "10").appendQueryParameter("api_key", API_KEY);
+                    .appendQueryParameter("limit", "10").appendQueryParameter("api_key", API_KEY);*/
+
+/*            Uri dictionaryUri = Uri.parse(URI_BASE).buildUpon()
+                    .appendQueryParameter("query", randomDirtyWord)
+                    .appendQueryParameter("includePartOfSpeech", partOfSpeechSelected)
+                    .appendPath(URI_END).appendPath(API_KEY).build();*/
 
 
-            urlToUse = new URL(dictionaryUri.build().toString());
+            String urlString = URI_BASE + randomDirtyWord + URI_POS + partOfSpeechSelected + URI_END + API_KEY;
+
+
+            urlToUse = new URL(urlString);
+
+            Log.i("url", urlString);
 
 
             urlConnection = (HttpURLConnection) urlToUse.openConnection();
@@ -82,6 +99,7 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
                 return null;
             }
             dictionaryWordsStr = buffer.toString();
+            Log.i("jsondata", dictionaryWordsStr);
 
 
 
@@ -125,7 +143,9 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
 
         //Make a new JSON Object from JSONString
         JSONObject jsonObject = new JSONObject(wordListString);
-        JSONArray wordsArray = new JSONArray(COMPLETE_RESULTS);
+        JSONArray wordsArray = jsonObject.getJSONArray(COMPLETE_RESULTS);
+
+        Log.i("JsonArray", wordsArray.toString());
 
         String[] wordsReturned = new String[LIMIT_RESULTS_CALLED];
 
@@ -139,22 +159,32 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
             aWordFound = aWordDefinition.getString(DEFINED_WORD);
 
             wordsReturned[i] = aWordFound;
+            Log.i("wordsFound", wordsReturned[i].toString());
         }
-        return wordsReturned[randWordSelector.nextInt(wordsReturned.length)];
+        return wordsReturned[1];
 
     }
 
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+        mDictionaryInterface.foundAWord(s);
 
 
     }
 
 
+
+    public void setDictionaryInterface(DictionaryInterface something){
+        this.mDictionaryInterface = something;
+    }
+
+
+
     public interface DictionaryInterface{
 
-        String getWordFound(String wordFound);
+       public void foundAWord(String wordFound);
+
     }
 
 }

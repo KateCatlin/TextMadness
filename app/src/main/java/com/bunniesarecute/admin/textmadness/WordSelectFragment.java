@@ -19,10 +19,6 @@ import com.bunniesarecute.admin.textmadness.DictionaryAPI.DictionaryInterface;
 public class WordSelectFragment extends Fragment implements DictionaryInterface {
     POSAdapter mAdapter;
 
-    @Override
-    public String getWordFound(String wordFound) {
-        return null;
-    }
 
     public WordSelectFragment() {
     }
@@ -45,25 +41,36 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
 
         ListView listView = (ListView) rootView.findViewById(R.id.listview);
 
+        final DictionaryAPI anApi = new DictionaryAPI();
+
+        anApi.setDictionaryInterface(this);
+
         listView.setAdapter(mAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowID) {
                 POSObject thisObject = mAdapter.getItem(position);
+                String posSelected = thisObject.getpOS();
+                anApi.execute(posSelected, "home");
 
-                Intent intent = new Intent();
-
-                intent.putExtra("RANDOM_WORD", "*****");
-
-                getActivity().setResult(Activity.RESULT_OK, intent);
-                getActivity().finish();
             }
 
         });
 
 
         return rootView;
+    }
+
+    @Override
+    public void foundAWord(String word){
+
+        Intent intent = new Intent();
+
+        intent.putExtra("RANDOM_WORD", word);
+
+        getActivity().setResult(Activity.RESULT_OK, intent);
+        getActivity().finish();
     }
 
 
