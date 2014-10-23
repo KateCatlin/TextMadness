@@ -35,6 +35,7 @@ public class MainActivity extends Activity {
                 Intent genWordIntent = new Intent(mainEditText.getContext(), WordSelect.class);
                 startActivityForResult(genWordIntent, GENERATE_RANDOM_WORD_REQUEST);
 
+
                 //once logic is set for getting random word, set it with mTextBuilder.addRandomWordToArrayList(*whatever the new random word is*)
             }
         });

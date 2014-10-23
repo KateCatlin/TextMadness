@@ -6,11 +6,13 @@ package com.bunniesarecute.admin.textmadness;
 public class POSObject {
     private String pOS;
     private String pOSExample;
+    private String posLowerCase;
 
 
     public POSObject(String pOS, String pOSExample) {
         this.pOS = pOS;
         this.pOSExample = pOSExample;
+        this.posLowerCase = posLowerCase;
     }
 
     public String getpOS() {

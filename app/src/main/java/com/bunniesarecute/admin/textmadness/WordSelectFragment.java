@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.UserHandle;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +50,7 @@ import java.util.List;
  */
 
 public class WordSelectFragment extends Fragment {
+    private final String LOG_TAG = WordSelectFragment.class.getSimpleName();
     POSAdapter mAdapter;
 
     public WordSelectFragment() {
@@ -80,8 +82,13 @@ public class WordSelectFragment extends Fragment {
                 POSObject thisObject = mAdapter.getItem(position);
                 DictionaryAPI dictionary = new DictionaryAPI();
                 Intent intent = new Intent();
+                String posString = mAdapter.getItem(position).getpOS();
 
                 intent.putExtra("RANDOM_WORD", "*****");
+                Log.d(LOG_TAG, "The POS chosen is " + posString);
+
+                DictionaryAPI dictionaryAPI = new DictionaryAPI();
+                dictionaryAPI.execute(posString);
 
                 getActivity().setResult(Activity.RESULT_OK, intent);
                 getActivity().finish();
