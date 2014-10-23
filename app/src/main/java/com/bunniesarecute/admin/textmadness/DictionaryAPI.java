@@ -124,7 +124,7 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
         }
 
         try{
-            getWordFromJSON(dictionaryWordsStr);
+            return getWordFromJSON(dictionaryWordsStr);
         }catch (JSONException e){
             Log.e("JSON error", e.getMessage());
         }
@@ -161,6 +161,7 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
             wordsReturned[i] = aWordFound;
             Log.i("wordsFound", wordsReturned[i].toString());
         }
+        Log.i("wordReturned", wordsReturned[1]);
         return wordsReturned[1];
 
     }
@@ -168,6 +169,7 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+
         mDictionaryInterface.foundAWord(s);
 
 
