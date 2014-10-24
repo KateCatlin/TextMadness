@@ -23,6 +23,7 @@ import java.util.Random;
 public class WordSelectFragment extends Fragment implements DictionaryInterface {
     POSAdapter mAdapter;
     Random randomWordSelector;
+    private static final String LOG_TAG = "WordSelectFragment";
 
 
 
@@ -59,6 +60,7 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
                 POSObject thisObject = mAdapter.getItem(position);
                 String posSelected = thisObject.getpOS().toLowerCase();
                 anApi.execute(posSelected);
+
             }
 
         });
@@ -69,6 +71,8 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
 
     @Override
     public void foundAWord(String word){
+
+        Log.d(LOG_TAG, word);
 
         if(word == null){
             word = "skittles";
