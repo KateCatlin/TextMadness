@@ -81,7 +81,7 @@ public class MainActivity extends Activity {
                 // use random word here
                 mainEditText = (EditText) findViewById(R.id.edit_text);
                 mainEditText.setText(mainEditText.getText() + " " + data.getStringExtra("RANDOM_WORD"));
-                
+                mainEditText.setSelection(mainEditText.length());
             }
         }
     }
