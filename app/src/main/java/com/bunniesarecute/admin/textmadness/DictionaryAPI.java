@@ -14,12 +14,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
  * Created by admin on 10/22/14.
  */
 public class DictionaryAPI extends AsyncTask<String, Void, String> {
+    private static final String LOG_TAG = "DictionaryAPI";
 
     public DictionaryInterface mDictionaryInterface;
 
@@ -34,11 +36,17 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... strings) {
 
+        String [] backupVerbs = new String[] {"leprechaun jump", "scramble", "fluff", "kill", "air kiss"};
+        String [] backupAdverbs = new String[] {"accidentally", "boldly", "dutifully", "seldom", "unhappily"};
+        String [] backupAdjectives = new String[] {"spikey", "rough", "purple", "muscular", "angry"};
+        String [] backupNouns = new String[] {"kidney", "turkey herding rod", "pillow", "hair ball", "antelope"};
+
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
 
 
         String partOfSpeechSelected = strings[0];
+        Log.d(LOG_TAG, strings[0]);
         String randomDirtyWord = strings[1];
         final String URI_BASE = "http://api.wordnik.com/v4/words.json/reverseDictionary?query=";
         final String URI_POS = "&includePartOfSpeech=";
@@ -99,10 +107,40 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
                 return null;
             }
             dictionaryWordsStr = buffer.toString();
-            Log.i("jsondata", dictionaryWordsStr);
 
+            Log.d(LOG_TAG, dictionaryWordsStr);
+            final String TOTAL_RESULTS = "totalResults";
 
-
+            try {
+                JSONObject jsonObject = new JSONObject(dictionaryWordsStr);
+                int results = jsonObject.getInt(TOTAL_RESULTS);
+                if (results ==0 ) {
+                    Log.d(LOG_TAG, "WE FOUND IT");
+                    Random random = new Random();
+                    int number = random.nextInt(backupVerbs.length);
+                    Log.d(LOG_TAG, "The number is " + number);
+                    if (strings[0].equals("Noun")) {
+                        dictionaryWordsStr = backupNouns[number];
+                        return dictionaryWordsStr;
+                    }
+                    else if (strings[0].equals("Adjective")) {
+                        dictionaryWordsStr = backupAdjectives[number];
+                        return dictionaryWordsStr;
+                    } else if (strings[0].equals("Verb")) {
+                        dictionaryWordsStr = backupVerbs[number];
+                        return dictionaryWordsStr;
+                    } else if (strings[0].equals("Adverb")) {
+                        dictionaryWordsStr = backupAdverbs[number];
+                        return dictionaryWordsStr;
+                    }
+                    else {
+                        dictionaryWordsStr = "chair";
+                    }
+                }
+            } catch (JSONException e) {
+                Log.d(LOG_TAG, "WE'RE SCREWED");
+                return null;
+            }
         }
         catch (MalformedURLException e){
                 Log.e("createUrl", e.getMessage());}
@@ -128,8 +166,6 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
         }catch (JSONException e){
             Log.e("JSON error", e.getMessage());
         }
-
-
         return null;
     }
 
@@ -169,7 +205,6 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-
         mDictionaryInterface.foundAWord(s);
 
 
@@ -181,12 +216,8 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
         this.mDictionaryInterface = something;
     }
 
-
-
     public interface DictionaryInterface{
-
        public void foundAWord(String wordFound);
-
     }
 
 }
