@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setProgressBarIndeterminateVisibility(false);
         mainEditText = (EditText) findViewById(R.id.edit_text);
         insertWordButton = (Button) findViewById(R.id.generate_word_button);
         insertWordButton.setOnClickListener(new View.OnClickListener() {
@@ -83,8 +84,8 @@ public class MainActivity extends Activity {
             if (resultCode == RESULT_OK) {
                 // use random word here
                 mainEditText = (EditText) findViewById(R.id.edit_text);
-                mainEditText.setText(mainEditText.getText() + data.getStringExtra("RANDOM_WORD"));
-                
+                mainEditText.setText(mainEditText.getText() + " " + data.getStringExtra("RANDOM_WORD"));
+                mainEditText.setSelection(mainEditText.length());
             }
         }
     }

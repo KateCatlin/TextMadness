@@ -2,11 +2,9 @@ package com.bunniesarecute.admin.textmadness;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,13 +20,6 @@ import java.util.Random;
 public class DictionaryAPI extends AsyncTask<String, Void, String> {
 
     public DictionaryInterface mDictionaryInterface;
-
-/*    public void buildUrlString(String badWord, String wordType) {
-        String urlPartOne = "http://api.wordnik.com:80/v4/words.json/reverseDictionary?query=";
-        String urlPartTwo = "&includePartOfSpeech=";
-        String urlPartThree = "&maxCorpusCount=1&minLength=1&includeTags=false&limit=10&api_key=";
-        searchURL = urlPartOne + badWord + urlPartTwo + wordType + urlPartThree + APIkey;
-    }*/
 
     String dictionaryWordsStr = null;
     @Override
@@ -46,24 +37,7 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
         final String API_KEY = "6aa015c0d84b01a6c205f6848a6dea42bcb91d757d4341dde";
         URL urlToUse = null;
 
-/*        api.wordnik.com/v4/words.json/reverseDictionary?query=anal&includePartOfSpeech=noun
-                &maxCorpusCount=1&minLength=1&includeTags=false&limit=10&api_key=6aa015c0d84b01a6c205f6848a6dea42bcb91d757d4341dde*/
-
         try {
-/*            Uri.Builder dictionaryUri = new Uri.Builder();
-            dictionaryUri.scheme("http").authority("api.wordnik.com").appendPath("v4").appendPath("words.json")
-                    .appendPath("reverseDictionary").appendQueryParameter("query", randomDirtyWord)
-                    .appendQueryParameter("includePartOfSpeech", partOfSpeechSelected)
-                    .appendQueryParameter("maxCorpusCount", "1").appendQueryParameter("minLength", "1")
-                    .appendQueryParameter("includeTags", "false").appendQueryParameter("skip", "0")
-                    .appendQueryParameter("limit", "10").appendQueryParameter("api_key", API_KEY);*/
-
-/*            Uri dictionaryUri = Uri.parse(URI_BASE).buildUpon()
-                    .appendQueryParameter("query", randomDirtyWord)
-                    .appendQueryParameter("includePartOfSpeech", partOfSpeechSelected)
-                    .appendPath(URI_END).appendPath(API_KEY).build();*/
-
-
             String urlString = URI_BASE + randomDirtyWord + URI_POS + partOfSpeechSelected + URI_END + API_KEY;
 
 
@@ -190,18 +164,3 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
 
 }
 
-
-
-
-
-
-
-
-    // http://developer.wordnik.com/v4
-
-// "/words.json/reverseDictionary
-
-// "http://api.wordnik.com:80/v4/words.json/reverseDictionary?query=shoe
-// &includePartOfSpeech=noun
-// &maxCorpusCount=1&minLength=1
-// &includeTags=false&skip=0&limit=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5
