@@ -24,6 +24,7 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
     POSAdapter mAdapter;
     ArrayList<String> dirtyWordList;
     Random randomWordSelector;
+    private static final String LOG_TAG = "WordSelectFragment";
 
 
 
@@ -35,11 +36,14 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
         setHasOptionsMenu(true);
         mAdapter = new POSAdapter(getActivity(), WordSelect.posObjectArrayList);
         dirtyWordList = new ArrayList<String>();
-        dirtyWordList.add("cock");
-        dirtyWordList.add("pussy");
-        dirtyWordList.add("boobs");
-        dirtyWordList.add("fuck");
-        dirtyWordList.add("sex");
+        dirtyWordList.add("elephfdsjk");
+        dirtyWordList.add("fdsjnkfgm");
+        dirtyWordList.add("hdfjkljdsskl");
+//        dirtyWordList.add("cock");
+//        dirtyWordList.add("pussy");
+//        dirtyWordList.add("boobs");
+//        dirtyWordList.add("fuck");
+//        dirtyWordList.add("sex");
 
     }
 
@@ -67,8 +71,8 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
                 POSObject thisObject = mAdapter.getItem(position);
                 String posSelected = thisObject.getpOS();
                 randomWordSelector = new Random();
-                String dirtyWord = dirtyWordList.get(randomWordSelector.nextInt(6));
-                Log.i("whatword", dirtyWord);
+                String dirtyWord = dirtyWordList.get(randomWordSelector.nextInt(dirtyWordList.size()));
+                Log.d(LOG_TAG, dirtyWord);
                 anApi.execute(posSelected, dirtyWord);
             }
 
@@ -80,6 +84,8 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
 
     @Override
     public void foundAWord(String word){
+
+        Log.d(LOG_TAG, word);
 
         if(word == null){
             word = "skittles";
