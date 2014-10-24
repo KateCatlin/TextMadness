@@ -19,8 +19,17 @@
         android:textColor="@color/teal"/>
 
     <ImageView android:id="@+id/loading_gif"
+        android:paddingLeft="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/splash_name"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="A Bunnies Are Cute™ app"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
 </RelativeLayout>
