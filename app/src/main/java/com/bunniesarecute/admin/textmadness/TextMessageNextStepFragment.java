@@ -27,7 +27,6 @@ public class TextMessageNextStepFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_share_textmessage, container, false);
         phoneNumber = "";
-        Bundle bundle = this.getArguments();
         messageToSend = getActivity().getIntent().getStringExtra(MainActivity.FULL_TEXT);
 
         doneButton = (Button) rootView.findViewById(R.id.done_button);
@@ -38,8 +37,10 @@ public class TextMessageNextStepFragment extends Fragment {
             public void onClick(View view) {
                 phoneNumber = whereToSend.getText().toString();
                 sendTextMessage(messageToSend, phoneNumber);
+
                 getFragmentManager().beginTransaction()
                         .replace(R.id.container, new ContinueOrNot())
+
                         .commit();
 
             }
