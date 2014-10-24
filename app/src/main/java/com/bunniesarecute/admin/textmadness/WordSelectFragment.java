@@ -13,7 +13,6 @@ import android.widget.ListView;
 
 import com.bunniesarecute.admin.textmadness.DictionaryAPI.DictionaryInterface;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -34,11 +33,7 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         mAdapter = new POSAdapter(getActivity(), WordSelect.posObjectArrayList);
-<<<<<<< HEAD
 
-
-=======
->>>>>>> b630cba7e00f69b40700bf5da046fea149474f4d
     }
 
     @Override
