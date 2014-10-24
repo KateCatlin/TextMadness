@@ -3,6 +3,7 @@
     package="com.bunniesarecute.admin.textmadness" >
 
     <uses-permission android:name="android.permission.send_sms" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
