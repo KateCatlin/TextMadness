@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
         insertWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mTextBuilder.addTextToStringArrayList(mainEditText.getText().toString());
+                //mTextBuilder.addTextToStringArrayList(mainEditText.getText().toString());
                 Intent genWordIntent = new Intent(mainEditText.getContext(), WordSelect.class);
                 startActivityForResult(genWordIntent, GENERATE_RANDOM_WORD_REQUEST);
 
@@ -44,9 +44,10 @@ public class MainActivity extends Activity {
         shareTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mTextBuilder.addTextToStringArrayList(mainEditText.getText().toString());
-                mTextBuilder.buildText();
-                mFullTextMessage = mTextBuilder.getTextFromMainEditText();
+                mFullTextMessage = mainEditText.getText().toString();
+                // mTextBuilder.addTextToStringArrayList(mainEditText.getText().toString());
+                // mTextBuilder.buildText();
+                //mFullTextMessage = mTextBuilder.getTextFromMainEditText();
                 Log.i("extra message", mFullTextMessage);
                 Intent sendMessageIntent = new Intent(getApplicationContext(), ShareOptions.class); //new share message activity
                 sendMessageIntent.putExtra(FULL_TEXT, mFullTextMessage);
