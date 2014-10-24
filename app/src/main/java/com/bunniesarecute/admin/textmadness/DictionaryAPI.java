@@ -80,38 +80,38 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
             dictionaryWordsStr = buffer.toString();
 
             Log.d(LOG_TAG, dictionaryWordsStr);
-            final String TOTAL_RESULTS = "totalResults";
+            //final String TOTAL_RESULTS = "totalResults";
 
-            try {
-                JSONObject jsonObject = new JSONObject(dictionaryWordsStr);
-                int results = jsonObject.getInt(TOTAL_RESULTS);
-                if (results ==0 ) {
-                    Log.d(LOG_TAG, "WE FOUND IT");
-                    Random random = new Random();
-                    int number = random.nextInt(backupVerbs.length);
-                    Log.d(LOG_TAG, "The number is " + number);
-                    if (strings[0].equals("Noun")) {
-                        dictionaryWordsStr = backupNouns[number];
-                        return dictionaryWordsStr;
-                    }
-                    else if (strings[0].equals("Adjective")) {
-                        dictionaryWordsStr = backupAdjectives[number];
-                        return dictionaryWordsStr;
-                    } else if (strings[0].equals("Verb")) {
-                        dictionaryWordsStr = backupVerbs[number];
-                        return dictionaryWordsStr;
-                    } else if (strings[0].equals("Adverb")) {
-                        dictionaryWordsStr = backupAdverbs[number];
-                        return dictionaryWordsStr;
-                    }
-                    else {
-                        dictionaryWordsStr = "chair";
-                    }
-                }
-            } catch (JSONException e) {
-                Log.d(LOG_TAG, "WE'RE SCREWED");
-                return null;
-            }
+//            try {
+//                JSONObject jsonObject = new JSONObject(dictionaryWordsStr);
+//                int results = jsonObject.getInt(TOTAL_RESULTS);
+//                if (results ==0 ) {
+//                    Log.d(LOG_TAG, "WE FOUND IT");
+//                    Random random = new Random();
+//                    int number = random.nextInt(backupVerbs.length);
+//                    Log.d(LOG_TAG, "The number is " + number);
+//                    if (strings[0].equals("Noun")) {
+//                        dictionaryWordsStr = backupNouns[number];
+//                        return dictionaryWordsStr;
+//                    }
+//                    else if (strings[0].equals("Adjective")) {
+//                        dictionaryWordsStr = backupAdjectives[number];
+//                        return dictionaryWordsStr;
+//                    } else if (strings[0].equals("Verb")) {
+//                        dictionaryWordsStr = backupVerbs[number];
+//                        return dictionaryWordsStr;
+//                    } else if (strings[0].equals("Adverb")) {
+//                        dictionaryWordsStr = backupAdverbs[number];
+//                        return dictionaryWordsStr;
+//                    }
+//                    else {
+//                        dictionaryWordsStr = "chair";
+//                    }
+//                }
+//            } catch (JSONException e) {
+//                Log.d(LOG_TAG, "WE'RE SCREWED");
+//                return null;
+//            }
         }
         catch (MalformedURLException e){
                 Log.e("createUrl", e.getMessage());}
