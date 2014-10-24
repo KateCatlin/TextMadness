@@ -37,6 +37,7 @@ public class TextBuilder {
         StringBuilder mStringBuilder = new StringBuilder();
         for(String current: editTextStrings) {
             mStringBuilder.append(current);
+            mStringBuilder.append(" ");
         }
         mTextFromMainEditText = mStringBuilder.toString();
     }
