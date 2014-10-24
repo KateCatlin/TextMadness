@@ -38,7 +38,9 @@ public class TextMessageNextStepFragment extends Fragment {
             public void onClick(View view) {
                 phoneNumber = whereToSend.getText().toString();
                 sendTextMessage(messageToSend, phoneNumber);
-                cont.startContinueFragment();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.container, new ContinueOrNot())
+                        .commit();
 
             }
         });
