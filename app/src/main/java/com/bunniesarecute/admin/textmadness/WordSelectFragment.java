@@ -70,8 +70,6 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
                 String dirtyWord = dirtyWordList.get(randomWordSelector.nextInt(6));
                 Log.i("whatword", dirtyWord);
                 anApi.execute(posSelected, dirtyWord);
-
-
             }
 
         });
