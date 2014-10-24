@@ -99,7 +99,7 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
                 return null;
             }
             dictionaryWordsStr = buffer.toString();
-            Log.i("jsondata", dictionaryWordsStr);
+
 
 
 
@@ -145,7 +145,6 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
         JSONObject jsonObject = new JSONObject(wordListString);
         JSONArray wordsArray = jsonObject.getJSONArray(COMPLETE_RESULTS);
 
-        Log.i("JsonArray", wordsArray.toString());
 
         String[] wordsReturned = new String[LIMIT_RESULTS_CALLED];
 
