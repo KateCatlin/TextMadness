@@ -27,7 +27,7 @@
     <EditText
         android:id="@+id/edit_text"
 
-        android:text="@string/type_here"
+        android:hint="@string/type_here"
         android:textSize="20dp"
         android:textStyle="italic"
 
