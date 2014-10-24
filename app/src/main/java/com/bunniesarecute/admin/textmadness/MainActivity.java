@@ -26,6 +26,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setProgressBarIndeterminateVisibility(false);
         mainEditText = (EditText) findViewById(R.id.edit_text);
         insertWordButton = (Button) findViewById(R.id.generate_word_button);
         insertWordButton.setOnClickListener(new View.OnClickListener() {
