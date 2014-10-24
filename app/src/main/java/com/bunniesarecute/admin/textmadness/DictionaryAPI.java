@@ -39,15 +39,13 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
         String partOfSpeechSelected = strings[0];
         Log.d(LOG_TAG, strings[0]);
         String randomDirtyWord = strings[1];
-        final String URI_BASE = "http://api.wordnik.com/v4/words.json/reverseDictionary?query=";
-        final String URI_POS = "&includePartOfSpeech=";
-        final String URI_END = "&maxCorpusCount=1&minLength=1&includeTags=false&limit=10&api_key=";
-        final String API_KEY = "6aa015c0d84b01a6c205f6848a6dea42bcb91d757d4341dde";
-        URL urlToUse = null;
+        final String URI_Start = "http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=false&includePartOfSpeech=";
+        final String URI_END = "&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=1&minLength=1&limit=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5";
+
+        URL urlToUse;
 
         try {
-            String urlString = URI_BASE + randomDirtyWord + URI_POS + partOfSpeechSelected + URI_END + API_KEY;
-
+            String urlString = URI_Start + partOfSpeechSelected + URI_END;
 
             urlToUse = new URL(urlString);
 
