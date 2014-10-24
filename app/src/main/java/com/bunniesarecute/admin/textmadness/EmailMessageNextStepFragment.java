@@ -29,7 +29,6 @@ public class EmailMessageNextStepFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_share_emailmessage, container, false);
         emailSubject = "My MadText";
         emailAddress = "";
-        Bundle bundle = this.getArguments();
         messageToSend = getActivity().getIntent().getStringExtra(MainActivity.FULL_TEXT);
 
         doneButton = (Button) rootView.findViewById(R.id.done_button);
