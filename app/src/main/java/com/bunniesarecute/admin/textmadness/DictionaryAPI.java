@@ -5,6 +5,8 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,15 +32,13 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
 
 
         String partOfSpeechSelected = strings[0];
-        String randomDirtyWord = strings[1];
-        final String URI_BASE = "http://api.wordnik.com/v4/words.json/reverseDictionary?query=";
-        final String URI_POS = "&includePartOfSpeech=";
-        final String URI_END = "&maxCorpusCount=1&minLength=1&includeTags=false&limit=10&api_key=";
+        final String URI_BASE = "http://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=false&includePartOfSpeech=";
+        final String URI_END = "&minLength=1&api_key=";
         final String API_KEY = "6aa015c0d84b01a6c205f6848a6dea42bcb91d757d4341dde";
         URL urlToUse = null;
 
         try {
-            String urlString = URI_BASE + randomDirtyWord + URI_POS + partOfSpeechSelected + URI_END + API_KEY;
+            String urlString = URI_BASE + partOfSpeechSelected + URI_END + API_KEY;
 
 
             urlToUse = new URL(urlString);
@@ -109,34 +109,20 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
 
     private String getWordFromJSON(String wordListString) throws JSONException
     {
-        Random randWordSelector = new Random();
-        final String COMPLETE_RESULTS = "results";
-        //The word that has to be parsed.
         final String DEFINED_WORD = "word";
-        final int LIMIT_RESULTS_CALLED = 10;
 
         //Make a new JSON Object from JSONString
         JSONObject jsonObject = new JSONObject(wordListString);
-        JSONArray wordsArray = jsonObject.getJSONArray(COMPLETE_RESULTS);
 
-        Log.i("JsonArray", wordsArray.toString());
-
-        String[] wordsReturned = new String[LIMIT_RESULTS_CALLED];
-
-        for(int i = 0; i < wordsArray.length(); i++) {
+        Log.i("JsonArray", jsonObject.toString());
 
             String aWordFound;
 
-            //get JsonObjects from Array
-            JSONObject aWordDefinition = wordsArray.getJSONObject(i);
+            aWordFound = jsonObject.getString(DEFINED_WORD);
 
-            aWordFound = aWordDefinition.getString(DEFINED_WORD);
+            Log.i("wordsFound", aWordFound.toString());
 
-            wordsReturned[i] = aWordFound;
-            Log.i("wordsFound", wordsReturned[i].toString());
-        }
-
-        return wordsReturned[randWordSelector.nextInt(LIMIT_RESULTS_CALLED)];
+        return aWordFound;
 
     }
 

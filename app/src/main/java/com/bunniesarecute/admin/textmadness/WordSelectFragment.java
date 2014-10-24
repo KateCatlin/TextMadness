@@ -22,7 +22,6 @@ import java.util.Random;
 
 public class WordSelectFragment extends Fragment implements DictionaryInterface {
     POSAdapter mAdapter;
-    ArrayList<String> dirtyWordList;
     Random randomWordSelector;
 
 
@@ -34,13 +33,6 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         mAdapter = new POSAdapter(getActivity(), WordSelect.posObjectArrayList);
-        dirtyWordList = new ArrayList<String>();
-        dirtyWordList.add("cock");
-        dirtyWordList.add("pussy");
-        dirtyWordList.add("boobs");
-        dirtyWordList.add("fuck");
-        dirtyWordList.add("sex");
-
     }
 
     @Override
@@ -65,11 +57,8 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowID) {
                 POSObject thisObject = mAdapter.getItem(position);
-                String posSelected = thisObject.getpOS();
-                randomWordSelector = new Random();
-                String dirtyWord = dirtyWordList.get(randomWordSelector.nextInt(6));
-                Log.i("whatword", dirtyWord);
-                anApi.execute(posSelected, dirtyWord);
+                String posSelected = thisObject.getpOS().toLowerCase();
+                anApi.execute(posSelected);
             }
 
         });
