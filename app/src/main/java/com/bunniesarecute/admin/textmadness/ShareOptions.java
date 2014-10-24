@@ -68,7 +68,7 @@ public class ShareOptions extends Activity implements OnClickListener {
                 textFrag.setArguments(mBundle);
                 hideButtonView();
                 getFragmentManager().beginTransaction()
-                        .add(R.id.container, textFrag)
+                        .replace(R.id.container, textFrag)
                         .commit();
                 break;
 
@@ -78,7 +78,7 @@ public class ShareOptions extends Activity implements OnClickListener {
                 emailFrag.setArguments(mBundle);
                 hideButtonView();
                 getFragmentManager().beginTransaction()
-                        .add(R.id.container, emailFrag)
+                        .replace(R.id.container, emailFrag)
                         .commit();
                 break;
 

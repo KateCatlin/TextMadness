@@ -1,7 +1,6 @@
 package com.bunniesarecute.admin.textmadness;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,19 +33,14 @@ public class ContinueOrNot extends Fragment implements OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.yes_button:
-                getFragmentManager().popBackStack();
+
 
             case R.id.no_button:
-                Intent goHome = new Intent(view.getContext(), MainActivity.class);
-                startActivity(goHome);
+                getFragmentManager().popBackStack();
+                /*Intent goHome = new Intent(view.getContext(), MainActivity.class);
+                startActivity(goHome);*/
         }
 
     }
 
-
-    public void startContinueFragment(){
-        getFragmentManager().beginTransaction()
-                .replace(R.id.container, new ContinueOrNot())
-                .commit();
-    }
 }
