@@ -22,7 +22,6 @@ import java.util.Random;
 
 public class WordSelectFragment extends Fragment implements DictionaryInterface {
     POSAdapter mAdapter;
-    ArrayList<String> dirtyWordList;
     Random randomWordSelector;
     private static final String LOG_TAG = "WordSelectFragment";
 
@@ -35,8 +34,11 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         mAdapter = new POSAdapter(getActivity(), WordSelect.posObjectArrayList);
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b630cba7e00f69b40700bf5da046fea149474f4d
     }
 
     @Override
@@ -61,8 +63,11 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowID) {
                 POSObject thisObject = mAdapter.getItem(position);
-                String posSelected = thisObject.getpOS();
+
+                String posSelected = thisObject.getpOS().toLowerCase();
                 anApi.execute(posSelected);
+
+
             }
 
         });
