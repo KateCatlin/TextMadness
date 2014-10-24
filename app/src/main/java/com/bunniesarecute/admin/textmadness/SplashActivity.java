@@ -19,8 +19,19 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        ImageView imageview = (ImageView)findViewById(R.id.loading_gif);
+        animateBunny();
 
+        int secondsDelayed = 1;
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                finish();
+            }
+        }, secondsDelayed * 1000);
+    }
+
+    private void animateBunny() {
+        ImageView imageview = (ImageView)findViewById(R.id.loading_gif);
         try{
             android.util.Log.v("GifAnimationDrawable", "===>One");
             little = new GifAnimationDrawable(getResources().openRawResource(R.raw.bunny));
@@ -33,13 +44,5 @@ public class SplashActivity extends Activity {
             android.util.Log.v("GifAnimationDrawable", "===>Four");
         }catch(IOException ioe){
         }
-
-        int secondsDelayed = 3;
-        new Handler().postDelayed(new Runnable() {
-            public void run() {
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                finish();
-            }
-        }, secondsDelayed * 1000);
     }
 }
