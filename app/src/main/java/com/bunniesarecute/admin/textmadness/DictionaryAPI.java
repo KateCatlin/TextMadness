@@ -161,8 +161,8 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
             wordsReturned[i] = aWordFound;
             Log.i("wordsFound", wordsReturned[i].toString());
         }
-        Log.i("wordReturned", wordsReturned[1]);
-        return wordsReturned[1];
+
+        return wordsReturned[randWordSelector.nextInt(LIMIT_RESULTS_CALLED)];
 
     }
 

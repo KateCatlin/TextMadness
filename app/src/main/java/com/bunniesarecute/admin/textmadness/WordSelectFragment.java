@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +13,18 @@ import android.widget.ListView;
 
 import com.bunniesarecute.admin.textmadness.DictionaryAPI.DictionaryInterface;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * Created by katecatlin on 10/21/14.
  */
 
 public class WordSelectFragment extends Fragment implements DictionaryInterface {
     POSAdapter mAdapter;
+    ArrayList<String> dirtyWordList;
+    Random randomWordSelector;
+
 
 
     public WordSelectFragment() {
@@ -27,6 +34,13 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         mAdapter = new POSAdapter(getActivity(), WordSelect.posObjectArrayList);
+        dirtyWordList = new ArrayList<String>();
+        dirtyWordList.add("cock");
+        dirtyWordList.add("pussy");
+        dirtyWordList.add("boobs");
+        dirtyWordList.add("fuck");
+        dirtyWordList.add("sex");
+
     }
 
     @Override
@@ -52,7 +66,11 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowID) {
                 POSObject thisObject = mAdapter.getItem(position);
                 String posSelected = thisObject.getpOS();
-                anApi.execute(posSelected, "home");
+                randomWordSelector = new Random();
+                String dirtyWord = dirtyWordList.get(randomWordSelector.nextInt(6));
+                Log.i("whatword", dirtyWord);
+                anApi.execute(posSelected, dirtyWord);
+
 
             }
 
@@ -64,6 +82,10 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
 
     @Override
     public void foundAWord(String word){
+
+        if(word == null){
+            word = "skittles";
+        }
 
         Intent intent = new Intent();
 
