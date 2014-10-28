@@ -3,7 +3,7 @@ package com.bunniesarecute.admin.textmadness;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
 
 /**
  * Created by admin on 10/21/14.
@@ -11,8 +11,17 @@ import java.util.Map;
 public class TextBuilder {
     private ArrayList<String> editTextStrings = new ArrayList<String>();
     private String mTextFromMainEditText;
-    private Map<String, String> wordMap;
-    private final String MASKED_WORD_KEY = "hidden_word";
+    private HashMap<Integer, String> wordMap;
+    private Integer wordCounter;
+
+
+    public Integer getWordCounter(){
+        return wordCounter;
+    }
+
+    public void wordCountUp(){
+        wordCounter = wordCounter + 1;
+    }
 
     public ArrayList<String> getEditTextStrings(){
         return editTextStrings;
@@ -45,7 +54,12 @@ public class TextBuilder {
         mTextFromMainEditText = mStringBuilder.toString();
     }
 
-    public void maskRandomWord(String word){
+    public void addRandomWordToMap(String word){
+        wordMap.put(getWordCounter(), word);
+        wordCountUp();
+    }
 
+    public String getRandomWordFromMap(Integer wordCounter){
+        return wordMap.get(wordCounter);
     }
 }
