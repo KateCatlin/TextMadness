@@ -3,6 +3,7 @@ package com.bunniesarecute.admin.textmadness;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by admin on 10/21/14.
@@ -10,6 +11,8 @@ import java.util.ArrayList;
 public class TextBuilder {
     private ArrayList<String> editTextStrings = new ArrayList<String>();
     private String mTextFromMainEditText;
+    private Map<String, String> wordMap;
+    private final String MASKED_WORD_KEY = "hidden_word";
 
     public ArrayList<String> getEditTextStrings(){
         return editTextStrings;
@@ -40,5 +43,9 @@ public class TextBuilder {
             mStringBuilder.append(" ");
         }
         mTextFromMainEditText = mStringBuilder.toString();
+    }
+
+    public void maskRandomWord(String word){
+
     }
 }
