@@ -16,7 +16,8 @@ public class MainActivity extends Activity {
     Button insertWordButton;
     Button shareTextButton;
     EditText mainEditText;
-    TextBuilder mTextBuilder = new TextBuilder();
+
+
     String mFullTextMessage = "";
 
     public static final int GENERATE_RANDOM_WORD_REQUEST = 37;
@@ -33,7 +34,7 @@ public class MainActivity extends Activity {
         insertWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mTextBuilder.addTextToStringArrayList(mainEditText.getText().toString());
+                //mTextBuilder.addTextToStringArrayList(mainEditText.getText().toString());
                 Intent genWordIntent = new Intent(mainEditText.getContext(), WordSelect.class);
                 startActivityForResult(genWordIntent, GENERATE_RANDOM_WORD_REQUEST);
 
@@ -44,7 +45,9 @@ public class MainActivity extends Activity {
         shareTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mFullTextMessage = mainEditText.getText().toString();
+                TextBuilder.swapOutMaskedWord(mainEditText.getText().toString());
+                mFullTextMessage = TextBuilder.getUnMaskedMessage();
+
                 // mTextBuilder.addTextToStringArrayList(mainEditText.getText().toString());
                 // mTextBuilder.buildText();
                 //mFullTextMessage = mTextBuilder.getTextFromMainEditText();
@@ -85,12 +88,13 @@ public class MainActivity extends Activity {
             if (resultCode == RESULT_OK) {
                 // use random word here
                 mainEditText = (EditText) findViewById(R.id.edit_text);
-                mTextBuilder.addRandomWordToArrayList(data.getStringExtra("RANDOM_WORD"));
+
                 mainEditText.setText(mainEditText.getText() + " " + data.getStringExtra("RANDOM_WORD"));
                 mainEditText.setSelection(mainEditText.length());
             }
         }
     }
+
 
 
 }

@@ -23,7 +23,7 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
     POSAdapter mAdapter;
     Random randomWordSelector;
     String posSelected;
-    TextBuilder mTextBuilder = new TextBuilder();
+
     private static final String LOG_TAG = "WordSelectFragment";
 
 
@@ -82,7 +82,7 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
             word = "skittles";
         }
 
-        mTextBuilder.addRandomWordToMap(word);
+        TextBuilder.addRandomWordToMap(word);
 
         Intent intent = new Intent();
 

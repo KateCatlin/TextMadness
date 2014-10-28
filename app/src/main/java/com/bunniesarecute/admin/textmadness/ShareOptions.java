@@ -1,9 +1,7 @@
 package com.bunniesarecute.admin.textmadness;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +12,8 @@ import android.widget.Toast;
 
 public class ShareOptions extends Activity implements OnClickListener {
 
-    private String messageText;
+
+
     private ImageButton mTextMessageButton;
     private ImageButton mEmailMessageButton;
     private ImageButton mFacebookButton;
@@ -25,11 +24,6 @@ public class ShareOptions extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.share_options);
-
-
-        Intent intent = getIntent();
-        String word = intent.getStringExtra(MainActivity.FULL_TEXT);
-        Log.i("full text", word);
 
         mTextMessageButton = (ImageButton) findViewById(R.id.text_message_button);
         mTextMessageButton.setOnClickListener(this);
@@ -69,7 +63,7 @@ public class ShareOptions extends Activity implements OnClickListener {
         {
             case R.id.text_message_button:
                 TextMessageNextStepFragment textFrag = new TextMessageNextStepFragment();
-                textFrag.setArguments(mBundle);
+
                 hideButtonView();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.container, textFrag)
@@ -79,7 +73,7 @@ public class ShareOptions extends Activity implements OnClickListener {
             case R.id.email_button:
 
                 EmailMessageNextStepFragment emailFrag = new EmailMessageNextStepFragment();
-                emailFrag.setArguments(mBundle);
+
                 hideButtonView();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.container, emailFrag)
@@ -107,6 +101,7 @@ public class ShareOptions extends Activity implements OnClickListener {
         viewhide.setVisibility(View.GONE);
         view2hide.setVisibility(View.GONE);
     }
+
 
 /*
     public class TextMessageNextStepFragment extends Fragment {

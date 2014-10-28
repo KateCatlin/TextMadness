@@ -8,35 +8,42 @@ import java.util.HashMap;
 /**
  * Created by admin on 10/21/14.
  */
-public class TextBuilder {
-    private ArrayList<String> editTextStrings = new ArrayList<String>();
+public  class TextBuilder {
+    private  static ArrayList<String> editTextStrings = new ArrayList<String>();
     private String mTextFromMainEditText;
-    String unMaskedMessage = "";
-    private HashMap<Integer, String> wordMap = new HashMap<Integer, String>();
-    private ArrayList<String> listOfKeys = new ArrayList<String>();
-    private Integer wordCounter = 0;
+    public static String unMaskedMessage = "";
+    private  static HashMap<Integer, String> wordMap = new HashMap<Integer, String>();
+    private  static ArrayList<String> listOfKeys = new ArrayList<String>();
+    private  static Integer wordCounter = 0;
+    private  static Integer keysReturned = 1;
     WordSelect mWordSelect = new WordSelect();
 
 
 
-    public Integer getWordCounter(){
+    public static Integer getWordCounter(){
         return wordCounter;
     }
 
-    public void wordCountUp(){
+    public static Integer getKeysReturned()
+    {
+        return keysReturned;
+    }
+
+    public static void wordCountUp(){
         wordCounter = getWordCounter() + 1;
     }
 
-    public ArrayList<String> getEditTextStrings(){
+    public static ArrayList<String> getEditTextStrings(){
         return editTextStrings;
     }
 
-    public String getTextFromMainEditText() {
-        Log.i("textEdit class", mTextFromMainEditText);
-        return mTextFromMainEditText;
+    public static String getUnMaskedMessage() {
+
+        Log.i("textEdit class", unMaskedMessage);
+        return unMaskedMessage;
     }
 
-    public void addTextToStringArrayList(String text) {
+    public static void addTextToStringArrayList(String text) {
         int i;
         String[] splitText = text.split(" ");
         for (i = 0; i < splitText.length; i++) {
@@ -45,60 +52,55 @@ public class TextBuilder {
         Log.i("editText String", getEditTextStrings().toString());
     }
 
-    public void addRandomWordToArrayList(String word) {
+    public static void addRandomWordToArrayList(String word) {
         getEditTextStrings().add(word);
     }
 
-    public void buildText(String nextWord) {
+    public static void buildText(String nextWord) {
         StringBuilder mStringBuilder = new StringBuilder();
             mStringBuilder.append(nextWord);
             mStringBuilder.append(" ");
-        unMaskedMessage = mStringBuilder.toString();
+        unMaskedMessage = getUnMaskedMessage() + mStringBuilder.toString();
     }
 
-    public HashMap getWordMap(){
+    public static HashMap<Integer, String> getWordMap(){
         return wordMap;
     }
 
-    public ArrayList<String> getListOfKeys(){
-        int i;
-        String[] splitText =  getWordMap().keySet().toArray().toString().split(" ");
-        for (i = 0; i < splitText.length; i++) {
-            listOfKeys.add(splitText[i]);
-        }
-
-        return listOfKeys;
+    public static Integer getNextKey(){
+       return getWordCounter() - getKeysReturned();
     }
 
-    public void addRandomWordToMap(String word){
-        wordMap.put(getWordCounter(), word);
+    public static void addRandomWordToMap(String word){
+        getWordMap().put(getWordCounter(), word);
         Log.i("word added to map", wordMap.get(getWordCounter()));
         wordCountUp();
     }
 
-    public String getRandomWordFromMap(Integer wordCounter){
-        return wordMap.get(wordCounter);
+    public static  String getRandomWordFromMap(Integer wordCounter){
+        return getWordMap().get(wordCounter);
     }
 
-    public String swapOutMaskedWord(String messageFromMain){
+    public static void swapOutMaskedWord(String messageFromMain){
         addTextToStringArrayList(messageFromMain);
 
         for(int i = 0; i < editTextStrings.size(); i++)
         {
             String wordToCheck = getEditTextStrings().get(i);
+            Log.i("word to check", wordToCheck);
             if(wordIsMasked(wordToCheck)){
-               wordToCheck = getRandomWordFromMap(Integer.valueOf(listOfKeys.get(i)));
+               wordToCheck = getRandomWordFromMap(getNextKey());
+
             }
             buildText(wordToCheck);
 
         }
-        return unMaskedMessage;
     }
 
-    public boolean wordIsMasked(String wordToCompare){
-        for(int i = 0; i < mWordSelect.posObjectArrayList.size(); i++){
-            String posWord = mWordSelect.posObjectArrayList.get(i).getpOS();
-            if(posWord.equals(wordToCompare)){
+    public static boolean wordIsMasked(String wordToCompare){
+        for(int i = 0; i < WordSelect.posObjectArrayList.size(); i++){
+            String posWord = WordSelect.posObjectArrayList.get(i).getpOS();
+            if(posWord.equalsIgnoreCase(wordToCompare)){
                 return true;
             }
         }
