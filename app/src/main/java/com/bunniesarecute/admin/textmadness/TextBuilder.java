@@ -2,10 +2,7 @@ package com.bunniesarecute.admin.textmadness;
 
 import android.util.Log;
 
-
-import java.sql.Array;
 import java.util.ArrayList;
-
 import java.util.HashMap;
 
 /**
@@ -14,7 +11,9 @@ import java.util.HashMap;
 public class TextBuilder {
     private ArrayList<String> editTextStrings = new ArrayList<String>();
     private String mTextFromMainEditText;
+    String unMaskedMessage = "";
     private HashMap<Integer, String> wordMap = new HashMap<Integer, String>();
+    private ArrayList<String> listOfKeys = new ArrayList<String>();
     private Integer wordCounter = 0;
     WordSelect mWordSelect = new WordSelect();
 
@@ -50,21 +49,25 @@ public class TextBuilder {
         getEditTextStrings().add(word);
     }
 
-    public void buildText() {
+    public void buildText(String nextWord) {
         StringBuilder mStringBuilder = new StringBuilder();
-        for(String current: editTextStrings) {
-            mStringBuilder.append(current);
+            mStringBuilder.append(nextWord);
             mStringBuilder.append(" ");
-        }
-        mTextFromMainEditText = mStringBuilder.toString();
+        unMaskedMessage = mStringBuilder.toString();
     }
 
     public HashMap getWordMap(){
         return wordMap;
     }
 
-    public Object getListOfKeys(){
-        return getWordMap().keySet().toArray();
+    public ArrayList<String> getListOfKeys(){
+        int i;
+        String[] splitText =  getWordMap().keySet().toArray().toString().split(" ");
+        for (i = 0; i < splitText.length; i++) {
+            listOfKeys.add(splitText[i]);
+        }
+
+        return listOfKeys;
     }
 
     public void addRandomWordToMap(String word){
@@ -79,14 +82,17 @@ public class TextBuilder {
 
     public String swapOutMaskedWord(String messageFromMain){
         addTextToStringArrayList(messageFromMain);
-        String unMaskedMessage = "";
+
         for(int i = 0; i < editTextStrings.size(); i++)
         {
             String wordToCheck = getEditTextStrings().get(i);
             if(wordIsMasked(wordToCheck)){
-
+               wordToCheck = getRandomWordFromMap(Integer.valueOf(listOfKeys.get(i)));
             }
+            buildText(wordToCheck);
+
         }
+        return unMaskedMessage;
     }
 
     public boolean wordIsMasked(String wordToCompare){
