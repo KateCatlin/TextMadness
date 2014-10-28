@@ -22,6 +22,8 @@ import java.util.Random;
 public class WordSelectFragment extends Fragment implements DictionaryInterface {
     POSAdapter mAdapter;
     Random randomWordSelector;
+    String posSelected;
+
     private static final String LOG_TAG = "WordSelectFragment";
 
 
@@ -59,7 +61,7 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowID) {
                 POSObject thisObject = mAdapter.getItem(position);
 
-                String posSelected = thisObject.getpOS().toLowerCase();
+                posSelected = thisObject.getpOS().toLowerCase();
                 anApi.execute(posSelected);
 
 
@@ -80,9 +82,11 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
             word = "skittles";
         }
 
+        TextBuilder.addRandomWordToMap(word);
+
         Intent intent = new Intent();
 
-        intent.putExtra("RANDOM_WORD", word);
+        intent.putExtra("RANDOM_WORD", posSelected);
 
         getActivity().setResult(Activity.RESULT_OK, intent);
         getActivity().finish();
