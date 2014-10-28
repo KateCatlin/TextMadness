@@ -11,8 +11,8 @@ import java.util.HashMap;
 public class TextBuilder {
     private ArrayList<String> editTextStrings = new ArrayList<String>();
     private String mTextFromMainEditText;
-    private HashMap<Integer, String> wordMap;
-    private Integer wordCounter;
+    private HashMap<Integer, String> wordMap = new HashMap<Integer, String>();
+    private Integer wordCounter = 0;
 
 
     public Integer getWordCounter(){
@@ -20,7 +20,7 @@ public class TextBuilder {
     }
 
     public void wordCountUp(){
-        wordCounter = wordCounter + 1;
+        wordCounter = getWordCounter() + 1;
     }
 
     public ArrayList<String> getEditTextStrings(){
@@ -56,6 +56,7 @@ public class TextBuilder {
 
     public void addRandomWordToMap(String word){
         wordMap.put(getWordCounter(), word);
+        Log.i("word added to map", wordMap.get(getWordCounter()));
         wordCountUp();
     }
 
