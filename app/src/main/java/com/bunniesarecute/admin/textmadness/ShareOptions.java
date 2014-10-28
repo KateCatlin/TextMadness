@@ -1,7 +1,9 @@
 package com.bunniesarecute.admin.textmadness;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,7 +27,9 @@ public class ShareOptions extends Activity implements OnClickListener {
         setContentView(R.layout.share_options);
 
 
-
+        Intent intent = getIntent();
+        String word = intent.getStringExtra(MainActivity.FULL_TEXT);
+        Log.i("full text", word);
 
         mTextMessageButton = (ImageButton) findViewById(R.id.text_message_button);
         mTextMessageButton.setOnClickListener(this);
