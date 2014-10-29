@@ -23,6 +23,7 @@ public class SwapRandomWord extends Fragment implements RandomDictionaryInterfac
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String wordToSwap = getActivity().getIntent().getStringExtra("RAND_FROM_MESSAGE");
+        mRandomizerDictionaryAPI.setRandomDictionaryInterface(this);
         mRandomizerDictionaryAPI.execute(wordToSwap);
 
 
@@ -40,7 +41,8 @@ public class SwapRandomWord extends Fragment implements RandomDictionaryInterfac
 
 
     @Override
-    public void randomWord(Boolean randomTrue) {
-        
+    public void randomWord(String randomWord) {
+        TextBuilder.replaceSwappedWordWithRandom(randomWord);
+        getFragmentManager().beginTransaction().detach(this);
     }
 }

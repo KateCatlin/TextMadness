@@ -149,11 +149,11 @@ public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> imp
 
     @Override
     public void foundAWord(String wordFound) {
-
+        mRandomDictionaryInterface.randomWord(wordFound);
     }
 
     public interface RandomDictionaryInterface{
-       public void randomWord(Boolean randomTrue);
+       public void randomWord(String randomTrue);
     }
 
 }
