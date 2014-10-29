@@ -22,6 +22,8 @@
     <string name="send_again_yes">Yes</string>
     <string name="send_again_no">No</string>
     <string name="rand_button">Swap a Word</string>
+    <string name="menu">Menu</string>
+    <string name="set_content">Set Content Option</string>
 
 
 </resources>
