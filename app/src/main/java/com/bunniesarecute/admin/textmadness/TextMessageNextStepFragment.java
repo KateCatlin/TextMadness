@@ -17,7 +17,7 @@ public class TextMessageNextStepFragment extends Fragment {
     private EditText whereToSend;
     private String phoneNumber;
     private String messageToSend;
-    ContinueOrNot cont = new ContinueOrNot();
+
 
     public TextMessageNextStepFragment() {
     }
@@ -40,7 +40,6 @@ public class TextMessageNextStepFragment extends Fragment {
 
                 getFragmentManager().beginTransaction()
                         .replace(R.id.container, new ContinueOrNot())
-
                         .commit();
 
             }

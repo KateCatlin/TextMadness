@@ -18,7 +18,7 @@ public class MainActivity extends Activity {
     Button shareTextButton;
     EditText mainEditText;
     Button randomWordButton;
-
+    int code = 0;
 
     String mFullTextMessage = "";
     String mRandomWordFromMessage = "";
@@ -67,9 +67,10 @@ public class MainActivity extends Activity {
         randomWordButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextBuilder.addTextToStringArrayList(mainEditText.getText().toString());
+                TextBuilder.addTextToStringArrayList(mainEditText.getText().toString(), code);
                 mRandomWordFromMessage = TextBuilder.selectRandomWordFromMessage();
                 Intent randomIntent = getIntent().putExtra("RAND_FROM_MESSAGE", mRandomWordFromMessage);
+                code++;
                 //Bundle randomBundle = new Bundle();
                 //randomBundle.putString("RAND_FROM_MESSAGE", randomWordReturned);
                 getFragmentManager().beginTransaction().add(R.id.main_activity, new SwapRandomWord()).commit();
@@ -105,8 +106,9 @@ public class MainActivity extends Activity {
             if (resultCode == RESULT_OK) {
                 // use random word here
                 mainEditText = (EditText) findViewById(R.id.edit_text);
-
                 mainEditText.setText(mainEditText.getText() + " " + data.getStringExtra("RANDOM_WORD"));
+                TextBuilder.addTextToStringArrayList(mainEditText.getText().toString(), code);
+                code++;
                 mainEditText.setSelection(mainEditText.length());
             }
         }

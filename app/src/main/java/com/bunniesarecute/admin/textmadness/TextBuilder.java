@@ -46,17 +46,19 @@ public  class TextBuilder {
         return unMaskedMessage;
     }
 
-    public static void addTextToStringArrayList(String text) {
-        int i;
-        String[] splitText = text.split(" ");
-        for (i = 0; i < splitText.length; i++) {
-            getEditTextStrings().add(splitText[i]);
+    public static void addTextToStringArrayList(String text, int code) {
+        if(code < 1) {
+            int i;
+            String[] splitText = text.split(" ");
+            for (i = 0; i < splitText.length; i++) {
+                getEditTextStrings().add(splitText[i]);
+            }
         }
         Log.i("editText String", getEditTextStrings().toString());
     }
 
     public static String selectRandomWordFromMessage(){
-        wordSelected = randWordSelector.nextInt(getEditTextStrings().size());
+        wordSelected = randWordSelector.nextInt(editTextStrings.size());
         Log.i("randomNumber", String.valueOf(wordSelected));
         return getEditTextStrings().get(wordSelected);
     }
@@ -102,7 +104,7 @@ public  class TextBuilder {
     }
 
     public static void swapOutMaskedWord(String messageFromMain){
-        addTextToStringArrayList(messageFromMain);
+        //addTextToStringArrayList(messageFromMain);
 
         for(int i = 0; i < editTextStrings.size(); i++)
         {
