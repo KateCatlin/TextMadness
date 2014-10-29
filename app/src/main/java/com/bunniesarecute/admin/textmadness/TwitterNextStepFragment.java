@@ -79,14 +79,33 @@ public class TwitterNextStepFragment extends Fragment {
 
     private void sendTweet(String message){
 
-//        Intent tweetIntent = new Intent(Intent.ACTION_SEND);
-//        tweetIntent.putExtra(Intent.EXTRA_TEXT, "This is a Test.");
-//        tweetIntent.setType("text/plain");
+        Intent tweetIntent = new Intent(Intent.ACTION_SEND);
+        tweetIntent.putExtra(Intent.EXTRA_TEXT, message);
+        tweetIntent.setType("text/plain");
 
-        String url = "http://www.twitter.com/intent/tweet?url=YOURURL&text=" + message;
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
-        startActivity(i);
+        PackageManager packManager = getActivity().getPackageManager();
+        List<ResolveInfo> resolvedInfoList = packManager.queryIntentActivities(tweetIntent,  PackageManager.MATCH_DEFAULT_ONLY);
+
+        boolean resolved = false;
+        for(ResolveInfo resolveInfo: resolvedInfoList){
+            if(resolveInfo.activityInfo.packageName.startsWith("com.twitter.android")){
+                tweetIntent.setClassName(
+                        resolveInfo.activityInfo.packageName,
+                        resolveInfo.activityInfo.name );
+                resolved = true;
+                break;
+            }
+        }
+        if(resolved){
+            startActivity(tweetIntent);
+        }else{
+            Toast.makeText(getActivity(), "Twitter app isn't found", Toast.LENGTH_LONG).show();
+        }
+
+//        String url = "http://www.twitter.com/intent/tweet?url=YOURURL&text=" + message;
+//        Intent i = new Intent(Intent.ACTION_VIEW);
+//        i.setData(Uri.parse(url));
+//        startActivity(i);
 
         }
     }
