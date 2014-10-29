@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Created by admin on 10/21/14.
@@ -12,6 +13,7 @@ public  class TextBuilder {
     private  static ArrayList<String> editTextStrings = new ArrayList<String>();
     private String mTextFromMainEditText;
     public static String unMaskedMessage = "";
+    private static Random randWordSelector = new Random();
     private  static HashMap<Integer, String> wordMap = new HashMap<Integer, String>();
     private  static ArrayList<String> listOfKeys = new ArrayList<String>();
     private  static Integer wordCounter = 0;
@@ -50,6 +52,12 @@ public  class TextBuilder {
             getEditTextStrings().add(splitText[i]);
         }
         Log.i("editText String", getEditTextStrings().toString());
+    }
+
+    public static String selectRandomWordFromMessage(){
+        String randWord = getEditTextStrings().get(randWordSelector.nextInt(getEditTextStrings().size()));
+        return randWord;
+
     }
 
     public static void addRandomWordToArrayList(String word) {
