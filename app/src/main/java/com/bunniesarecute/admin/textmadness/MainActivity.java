@@ -64,7 +64,7 @@ public class MainActivity extends Activity {
         randomWordButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+
             }
         });
     }
