@@ -1,6 +1,5 @@
 package com.bunniesarecute.admin.textmadness;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,15 +19,12 @@ public class SwapRandomWord extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mRandomizerDictionaryAPI = new RandomizerDictionaryAPI();
-
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
         String wordToSwap = getActivity().getIntent().getStringExtra("RAND_FROM_MESSAGE");
         mRandomizerDictionaryAPI.execute(wordToSwap);
+
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

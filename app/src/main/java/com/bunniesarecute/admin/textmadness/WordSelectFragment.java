@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.bunniesarecute.admin.textmadness.DictionaryAPI.DictionaryInterface;
-import com.bunniesarecute.admin.textmadness.RandomizerDictionaryAPI.RandomDictionaryInterface;
 
 import java.util.Random;
 
@@ -20,11 +19,12 @@ import java.util.Random;
  * Created by katecatlin on 10/21/14.
  */
 
-public class WordSelectFragment extends Fragment implements DictionaryInterface, RandomDictionaryInterface {
+public class WordSelectFragment extends Fragment implements DictionaryInterface {
     POSAdapter mAdapter;
     Random randomWordSelector;
     String posSelected;
     private boolean randomTrue;
+    private DictionaryAPI anApi = new DictionaryAPI();
 
     private static final String LOG_TAG = "WordSelectFragment";
 
@@ -52,7 +52,7 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface,
 
         ListView listView = (ListView) rootView.findViewById(R.id.listview);
 
-        final DictionaryAPI anApi = new DictionaryAPI();
+        //DictionaryAPI anApi = new DictionaryAPI();
 
         anApi.setDictionaryInterface(this);
 
@@ -80,10 +80,6 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface,
 
         Log.d(LOG_TAG, word);
 
-        if(randomTrue){
-
-
-        }
 
         TextBuilder.addRandomWordToMap(word);
 
@@ -96,8 +92,4 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface,
     }
 
 
-    @Override
-    public void randomWord(Boolean randomTrue) {
-        this.randomTrue = randomTrue;
-    }
 }

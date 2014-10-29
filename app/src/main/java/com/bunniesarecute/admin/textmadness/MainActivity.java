@@ -72,7 +72,7 @@ public class MainActivity extends Activity {
                 Intent randomIntent = getIntent().putExtra("RAND_FROM_MESSAGE", mRandomWordFromMessage);
                 //Bundle randomBundle = new Bundle();
                 //randomBundle.putString("RAND_FROM_MESSAGE", randomWordReturned);
-                getFragmentManager().beginTransaction().attach(new SwapRandomWord()).commit();
+                getFragmentManager().beginTransaction().add(R.id.main_activity, new SwapRandomWord()).commit();
             }
         });
     }

@@ -56,8 +56,9 @@ public  class TextBuilder {
     }
 
     public static String selectRandomWordFromMessage(){
-        wordSelected = randWordSelector.nextInt(getEditTextStrings().size());
-        return getEditTextStrings().get(randWordSelector.nextInt(wordSelected));
+        wordSelected = randWordSelector.nextInt(getEditTextStrings().size() +1);
+        Log.i("randomNumber", String.valueOf(wordSelected));
+        return getEditTextStrings().get(wordSelected);
     }
 
     public static void replaceSwappedWordWithRandom(String word){

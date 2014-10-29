@@ -3,6 +3,7 @@ package com.bunniesarecute.admin.textmadness;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,7 +33,7 @@ public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
 
 
         String wordToDefine = strings[0];
-        final String URI_BASE = "http://api.wordnik.com/v4/words.json/";
+        final String URI_BASE = "http://api.wordnik.com/v4/word.json/";
         final String URI_END = "/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=";
         final String API_KEY = "6aa015c0d84b01a6c205f6848a6dea42bcb91d757d4341dde";
         URL urlToUse = null;
@@ -111,9 +112,11 @@ public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
         final String PART_OF_SPEECH = "partOfSpeech";
 
         //Make a new JSON Object from JSONString
-        JSONObject jsonObject = new JSONObject(wordListString);
+        JSONArray jsonArray = new JSONArray(wordListString);
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
 
-        Log.i("JsonArray", jsonObject.toString());
+
+        Log.i("JsonArray", jsonArray.toString());
 
             String aWordFound;
 
@@ -128,9 +131,8 @@ public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        mRandomDictionaryInterface.randomWord(true);
-        DictionaryAPI dictionaryAPI = new DictionaryAPI();
-        dictionaryAPI.execute(s);
+        //mRandomDictionaryInterface.randomWord(true);
+
 
 
     }

@@ -13,7 +13,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Random;
 
 /**
  * Created by admin on 10/22/14.
@@ -163,14 +162,12 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         mDictionaryInterface.foundAWord(s);
-
-
     }
 
 
 
-    public void setDictionaryInterface(DictionaryInterface something){
-        this.mDictionaryInterface = something;
+    public void setDictionaryInterface(DictionaryInterface dictionaryInterface){
+        this.mDictionaryInterface = dictionaryInterface;
     }
 
     public interface DictionaryInterface{
