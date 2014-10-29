@@ -64,9 +64,10 @@ public class ShareOptions extends Activity implements OnClickListener {
             case R.id.text_message_button:
                 TextMessageNextStepFragment textFrag = new TextMessageNextStepFragment();
 
-                hideButtonView();
+
                 getFragmentManager().beginTransaction()
                         .replace(R.id.container, textFrag)
+                        .addToBackStack(null)
                         .commit();
                 break;
 
@@ -74,9 +75,10 @@ public class ShareOptions extends Activity implements OnClickListener {
 
                 EmailMessageNextStepFragment emailFrag = new EmailMessageNextStepFragment();
 
-                hideButtonView();
+
                 getFragmentManager().beginTransaction()
                         .replace(R.id.container, emailFrag)
+                        .addToBackStack(null)
                         .commit();
                 break;
 
@@ -94,6 +96,7 @@ public class ShareOptions extends Activity implements OnClickListener {
     public void popUpVersionToast(){
         Toast.makeText(this, "Coming Soon in Version 2.Dan!", Toast.LENGTH_SHORT);
     }
+/*
 
     public void hideButtonView(){
         View viewhide = findViewById(R.id.top_buttons);
@@ -101,6 +104,7 @@ public class ShareOptions extends Activity implements OnClickListener {
         viewhide.setVisibility(View.GONE);
         view2hide.setVisibility(View.GONE);
     }
+*/
 
 
 /*
