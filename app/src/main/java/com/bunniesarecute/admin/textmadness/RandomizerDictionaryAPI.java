@@ -31,14 +31,15 @@ public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
         BufferedReader reader = null;
 
 
-        String partOfSpeechSelected = strings[0];
-        final String URI_BASE = "http://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=false&includePartOfSpeech=";
-        final String URI_END = "&minLength=1&api_key=";
+        String wordToDefine = strings[0];
+        final String URI_BASE = "http://api.wordnik.com/v4/words.json/";
+        final String URI_END = "/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=";
         final String API_KEY = "6aa015c0d84b01a6c205f6848a6dea42bcb91d757d4341dde";
         URL urlToUse = null;
 
+        //http://api.wordnik.com:80/v4/word.json/shoe/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=
         try {
-            String urlString = URI_BASE + partOfSpeechSelected + URI_END + API_KEY;
+            String urlString = URI_BASE + wordToDefine + URI_END + API_KEY;
 
 
             urlToUse = new URL(urlString);
@@ -107,7 +108,7 @@ public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
 
     private String getWordFromJSON(String wordListString) throws JSONException
     {
-        final String DEFINED_WORD = "word";
+        final String PART_OF_SPEECH = "partOfSpeech";
 
         //Make a new JSON Object from JSONString
         JSONObject jsonObject = new JSONObject(wordListString);
