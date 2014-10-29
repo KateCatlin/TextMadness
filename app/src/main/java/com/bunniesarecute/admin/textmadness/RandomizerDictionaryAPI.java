@@ -117,7 +117,7 @@ public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
 
             String aWordFound;
 
-            aWordFound = jsonObject.getString(DEFINED_WORD);
+            aWordFound = jsonObject.getString(PART_OF_SPEECH);
 
             Log.i("wordsFound", aWordFound.toString());
 
@@ -128,7 +128,9 @@ public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        mRandomDictionaryInterface.foundAWord(s);
+        //mRandomDictionaryInterface.foundAWord(s);
+        DictionaryAPI dictionaryAPI = new DictionaryAPI();
+        dictionaryAPI.execute(s);
 
 
     }
