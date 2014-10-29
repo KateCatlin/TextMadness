@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -16,6 +17,7 @@ public class MainActivity extends Activity {
     Button insertWordButton;
     Button shareTextButton;
     EditText mainEditText;
+    Button randomWordButton;
 
 
     String mFullTextMessage = "";
@@ -56,6 +58,13 @@ public class MainActivity extends Activity {
                 sendMessageIntent.putExtra(FULL_TEXT, mFullTextMessage);
 
                 startActivity(sendMessageIntent);
+            }
+        });
+        randomWordButton = (Button) findViewById(R.id.random_word_button);
+        randomWordButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
             }
         });
     }

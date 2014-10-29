@@ -21,6 +21,7 @@
     <string name="send_again">Would you like to send this message again?</string>
     <string name="send_again_yes">Yes</string>
     <string name="send_again_no">No</string>
+    <string name="rand_button">Swap a Word</string>
 
 
 </resources>
