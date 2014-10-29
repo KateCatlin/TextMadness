@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -16,7 +17,9 @@ public class MainActivity extends Activity {
     Button insertWordButton;
     Button shareTextButton;
     EditText mainEditText;
-    TextBuilder mTextBuilder = new TextBuilder();
+    Button randomWordButton;
+
+
     String mFullTextMessage = "";
 
     public static final int GENERATE_RANDOM_WORD_REQUEST = 37;
@@ -44,7 +47,9 @@ public class MainActivity extends Activity {
         shareTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mFullTextMessage = mainEditText.getText().toString();
+                TextBuilder.swapOutMaskedWord(mainEditText.getText().toString());
+                mFullTextMessage = TextBuilder.getUnMaskedMessage();
+
                 // mTextBuilder.addTextToStringArrayList(mainEditText.getText().toString());
                 // mTextBuilder.buildText();
                 //mFullTextMessage = mTextBuilder.getTextFromMainEditText();
@@ -53,6 +58,13 @@ public class MainActivity extends Activity {
                 sendMessageIntent.putExtra(FULL_TEXT, mFullTextMessage);
 
                 startActivity(sendMessageIntent);
+            }
+        });
+        randomWordButton = (Button) findViewById(R.id.random_word_button);
+        randomWordButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
             }
         });
     }
@@ -85,11 +97,13 @@ public class MainActivity extends Activity {
             if (resultCode == RESULT_OK) {
                 // use random word here
                 mainEditText = (EditText) findViewById(R.id.edit_text);
+
                 mainEditText.setText(mainEditText.getText() + " " + data.getStringExtra("RANDOM_WORD"));
                 mainEditText.setSelection(mainEditText.length());
             }
         }
     }
+
 
 
 }
