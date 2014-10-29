@@ -21,7 +21,7 @@ public class SplashActivity extends Activity {
 
         animateBunny();
 
-        int secondsDelayed = 1;
+        int secondsDelayed = 2;
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
