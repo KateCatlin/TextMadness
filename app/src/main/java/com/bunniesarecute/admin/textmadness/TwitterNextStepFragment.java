@@ -1,7 +1,24 @@
 package com.bunniesarecute.admin.textmadness;
 
 import android.app.Fragment;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.FeatureInfo;
+import android.content.pm.InstrumentationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PermissionGroupInfo;
+import android.content.pm.PermissionInfo;
+import android.content.pm.ProviderInfo;
+import android.content.pm.ResolveInfo;
+import android.content.pm.ServiceInfo;
+import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.LayoutInflater;
@@ -9,6 +26,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.List;
 
 /**
  * Created by katecatlin on 10/29/14.
@@ -58,28 +78,27 @@ public class TwitterNextStepFragment extends Fragment {
     }
 
     private void sendTweet(String message){
-            if (isNetworkAvailable()) {
-                Twitt_Sharing twitt = new Twitt_Sharing(MainActivity.this,
-                        consumer_key, secret_key);
-                string_img_url = "http://3.bp.blogspot.com/_Y8u09A7q7DU/S-o0pf4EqwI/AAAAAAAAFHI/PdRKv8iaq70/s1600/id-do-anything-logo.jpg";
-                string_msg = "http://chintankhetiya.wordpress.com/";
-                // here we have web url image so we have to make it as file to
-                // upload
-                String_to_File(string_img_url);
-                // Now share both message & image to sharing activity
-                twitt.shareToTwitter(string_msg, casted_image);
 
-            } else {
-                showToast("No Network Connection Available !!!");
-            }
+//        Intent tweetIntent = new Intent(Intent.ACTION_SEND);
+//        tweetIntent.putExtra(Intent.EXTRA_TEXT, "This is a Test.");
+//        tweetIntent.setType("text/plain");
+
+        String url = "http://www.twitter.com/intent/tweet?url=YOURURL&text=" + message;
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
+
         }
     }
 
-    Intent share = new Intent(Intent.ACTION_SEND);
-    share.setType("text/plain");
-    share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 
-    share.putExtra(Intent.EXTRA_TEXT, message);
 
-    startActivity(Intent.createChooser(share, ));
-}
+//
+//    Intent share = new Intent(Intent.ACTION_SEND);
+//    share.setType("text/plain");
+//    share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+//
+//    share.putExtra(Intent.EXTRA_TEXT, message);
+//
+//    startActivity(Intent.createChooser(share, ));
+
