@@ -23,7 +23,6 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
     POSAdapter mAdapter;
     Random randomWordSelector;
     String posSelected;
-    private boolean randomTrue;
     private DictionaryAPI anApi = new DictionaryAPI();
 
     private static final String LOG_TAG = "WordSelectFragment";

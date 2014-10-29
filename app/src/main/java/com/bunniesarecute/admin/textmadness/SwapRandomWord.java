@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SwapRandomWord extends Fragment {
+import com.bunniesarecute.admin.textmadness.DictionaryAPI.DictionaryInterface;
+
+public class SwapRandomWord extends Fragment implements DictionaryInterface{
 
     private RandomizerDictionaryAPI mRandomizerDictionaryAPI;
 
@@ -36,6 +38,8 @@ public class SwapRandomWord extends Fragment {
     }
 
 
-
-
+    @Override
+    public void foundAWord(String wordFound) {
+        TextBuilder.replaceSwappedWordWithRandom(wordFound);
+    }
 }
