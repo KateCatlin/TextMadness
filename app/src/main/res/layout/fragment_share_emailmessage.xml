@@ -32,13 +32,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+    <Button android:id="@+id/contact_lookup_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/info_enter_space"
+        android:text="@string/contact_lookup_text"
+        android:background="@color/light_grey"
+        android:textColor="@color/teal"
+        android:layout_marginTop="25dp"
+        android:layout_centerInParent="true"
+        android:padding="10dp"/>
+
     <Button
         android:id="@+id/done_button"
-        android:layout_below="@+id/info_enter_space"
+        android:layout_below="@+id/contact_lookup_button"
         android:text="@string/done_button"
         android:background="@color/light_grey"
         android:textColor="@color/teal"
-        android:layout_marginTop="@dimen/frag_margin"
+        android:layout_marginTop="25dp"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
