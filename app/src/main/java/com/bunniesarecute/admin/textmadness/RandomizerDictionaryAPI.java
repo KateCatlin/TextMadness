@@ -3,6 +3,8 @@ package com.bunniesarecute.admin.textmadness;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.bunniesarecute.admin.textmadness.DictionaryAPI.DictionaryInterface;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,7 +20,7 @@ import java.net.URL;
 /**
  * Created by admin on 10/22/14.
  */
-public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
+public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> implements DictionaryInterface{
     private static final String LOG_TAG = "RandomDictionaryAPI";
 
     public RandomDictionaryInterface mRandomDictionaryInterface;
@@ -132,7 +134,9 @@ public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         //mRandomDictionaryInterface.randomWord(true);
-
+        DictionaryAPI dictionaryAPI = new DictionaryAPI();
+        dictionaryAPI.setDictionaryInterface(this);
+        dictionaryAPI.execute(s);
 
 
     }
@@ -141,6 +145,11 @@ public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
 
     public void setRandomDictionaryInterface(RandomDictionaryInterface something){
         this.mRandomDictionaryInterface = something;
+    }
+
+    @Override
+    public void foundAWord(String wordFound) {
+
     }
 
     public interface RandomDictionaryInterface{

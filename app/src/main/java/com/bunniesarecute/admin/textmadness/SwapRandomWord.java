@@ -6,11 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bunniesarecute.admin.textmadness.DictionaryAPI.DictionaryInterface;
+import com.bunniesarecute.admin.textmadness.RandomizerDictionaryAPI.RandomDictionaryInterface;
 
-public class SwapRandomWord extends Fragment implements DictionaryInterface{
+public class SwapRandomWord extends Fragment implements RandomDictionaryInterface{
 
-    private RandomizerDictionaryAPI mRandomizerDictionaryAPI;
+    RandomizerDictionaryAPI mRandomizerDictionaryAPI = new RandomizerDictionaryAPI();
+
+
 
 
     public SwapRandomWord() {
@@ -20,7 +22,6 @@ public class SwapRandomWord extends Fragment implements DictionaryInterface{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mRandomizerDictionaryAPI = new RandomizerDictionaryAPI();
         String wordToSwap = getActivity().getIntent().getStringExtra("RAND_FROM_MESSAGE");
         mRandomizerDictionaryAPI.execute(wordToSwap);
 
@@ -39,7 +40,7 @@ public class SwapRandomWord extends Fragment implements DictionaryInterface{
 
 
     @Override
-    public void foundAWord(String wordFound) {
-        TextBuilder.replaceSwappedWordWithRandom(wordFound);
+    public void randomWord(Boolean randomTrue) {
+        
     }
 }

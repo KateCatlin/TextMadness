@@ -19,7 +19,7 @@ public  class TextBuilder {
     private  static Integer wordCounter = 0;
     private  static Integer keysReturned = 1;
     private static int wordSelected;
-    
+
 
 
 
@@ -109,7 +109,7 @@ public  class TextBuilder {
             String wordToCheck = getEditTextStrings().get(i);
             Log.i("word to check", wordToCheck);
             if(wordIsMasked(wordToCheck)){
-               //wordToCheck = getRandomWordFromMap(getNextKey());
+               wordToCheck = getRandomWordFromMap(getNextKey());
                 replaceSwappedWordWithRandom(wordToCheck, i);
 
             }
