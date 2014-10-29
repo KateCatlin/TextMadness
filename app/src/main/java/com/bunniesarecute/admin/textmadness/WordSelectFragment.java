@@ -24,6 +24,7 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface,
     POSAdapter mAdapter;
     Random randomWordSelector;
     String posSelected;
+    private boolean randomTrue;
 
     private static final String LOG_TAG = "WordSelectFragment";
 
@@ -79,8 +80,9 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface,
 
         Log.d(LOG_TAG, word);
 
-        if(word == null){
-            word = "skittles";
+        if(randomTrue){
+
+
         }
 
         TextBuilder.addRandomWordToMap(word);
@@ -95,7 +97,7 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface,
 
 
     @Override
-    public boolean randomWord(Boolean randomTrue) {
-        return false;
+    public void randomWord(Boolean randomTrue) {
+        this.randomTrue = randomTrue;
     }
 }

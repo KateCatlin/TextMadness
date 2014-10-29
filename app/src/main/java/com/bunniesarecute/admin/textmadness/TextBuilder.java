@@ -18,6 +18,7 @@ public  class TextBuilder {
     private  static ArrayList<String> listOfKeys = new ArrayList<String>();
     private  static Integer wordCounter = 0;
     private  static Integer keysReturned = 1;
+    private static int wordSelected;
     WordSelect mWordSelect = new WordSelect();
 
 
@@ -55,9 +56,13 @@ public  class TextBuilder {
     }
 
     public static String selectRandomWordFromMessage(){
-        String randWord = getEditTextStrings().get(randWordSelector.nextInt(getEditTextStrings().size()));
-        return randWord;
+        wordSelected = randWordSelector.nextInt(getEditTextStrings().size());
+        return getEditTextStrings().get(randWordSelector.nextInt(wordSelected));
+    }
 
+    public static void replaceSwappedWordWithRandom(String word){
+        getEditTextStrings().remove(wordSelected);
+        getEditTextStrings().add(wordSelected, word);
     }
 
     public static void addRandomWordToArrayList(String word) {

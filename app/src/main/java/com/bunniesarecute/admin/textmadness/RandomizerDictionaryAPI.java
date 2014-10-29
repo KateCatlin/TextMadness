@@ -142,7 +142,7 @@ public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
     }
 
     public interface RandomDictionaryInterface{
-       public boolean randomWord(Boolean randomTrue);
+       public void randomWord(Boolean randomTrue);
     }
 
 }
