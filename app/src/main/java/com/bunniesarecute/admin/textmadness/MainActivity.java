@@ -21,9 +21,12 @@ public class MainActivity extends Activity {
 
 
     String mFullTextMessage = "";
+    String mRandomWordFromMessage = "";
 
     public static final int GENERATE_RANDOM_WORD_REQUEST = 37;
+    //public static final int SWAP_RANDOM_WORD_FROM_MESSAGE = 59;
     static final String FULL_TEXT = "com.bunniesarecute.admin.textmadness.mainactivity.mFullTextMessage";
+    static final String RAND_FROM_MESSAGE = "com.bunniesarecute.admin.textmadness.mainactivity.mFullTextMessage";
 
 
     @Override
@@ -65,7 +68,11 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 TextBuilder.addTextToStringArrayList(mainEditText.getText().toString());
-
+                mRandomWordFromMessage = TextBuilder.selectRandomWordFromMessage();
+                Intent randomIntent = getIntent().putExtra("RAND_FROM_MESSAGE", mRandomWordFromMessage);
+                //Bundle randomBundle = new Bundle();
+                //randomBundle.putString("RAND_FROM_MESSAGE", randomWordReturned);
+                getFragmentManager().beginTransaction().attach(new SwapRandomWord()).commit();
             }
         });
     }
@@ -103,6 +110,8 @@ public class MainActivity extends Activity {
                 mainEditText.setSelection(mainEditText.length());
             }
         }
+
+
     }
 
 

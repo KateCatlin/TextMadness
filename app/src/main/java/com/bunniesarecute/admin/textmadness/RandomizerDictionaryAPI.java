@@ -20,7 +20,7 @@ import java.net.URL;
 public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
     private static final String LOG_TAG = "RandomDictionaryAPI";
 
-    public DictionaryInterface mRandomDictionaryInterface;
+    public RandomDictionaryInterface mRandomDictionaryInterface;
 
     String randomDictionaryWordsStr = null;
     @Override
@@ -128,7 +128,7 @@ public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        //mRandomDictionaryInterface.foundAWord(s);
+        mRandomDictionaryInterface.randomWord(true);
         DictionaryAPI dictionaryAPI = new DictionaryAPI();
         dictionaryAPI.execute(s);
 
@@ -137,12 +137,12 @@ public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
 
 
 
-    public void setRandomDictionaryInterface(DictionaryInterface something){
+    public void setRandomDictionaryInterface(RandomDictionaryInterface something){
         this.mRandomDictionaryInterface = something;
     }
 
-    public interface DictionaryInterface{
-       public void foundAWord(String wordFound);
+    public interface RandomDictionaryInterface{
+       public boolean randomWord(Boolean randomTrue);
     }
 
 }
