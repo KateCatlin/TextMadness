@@ -18,18 +18,14 @@ import java.net.URL;
  * Created by admin on 10/22/14.
  */
 public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
-    private static final String LOG_TAG = "DictionaryAPI";
+    private static final String LOG_TAG = "RandomDictionaryAPI";
 
-    public DictionaryInterface mDictionaryInterface;
+    public DictionaryInterface mRandomDictionaryInterface;
 
-    String dictionaryWordsStr = null;
+    String randomDictionaryWordsStr = null;
     @Override
     protected String doInBackground(String... strings) {
 
-        String [] backupVerbs = new String[] {"leprechaun jump", "scramble", "fluff", "kill", "air kiss"};
-        String [] backupAdverbs = new String[] {"accidentally", "boldly", "dutifully", "seldom", "unhappily"};
-        String [] backupAdjectives = new String[] {"spikey", "rough", "purple", "muscular", "angry"};
-        String [] backupNouns = new String[] {"kidney", "turkey herding rod", "pillow", "hair ball", "antelope"};
 
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
@@ -76,41 +72,11 @@ public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
                 // Stream was empty.  No point in parsing.
                 return null;
             }
-            dictionaryWordsStr = buffer.toString();
+            randomDictionaryWordsStr = buffer.toString();
 
-            Log.d(LOG_TAG, dictionaryWordsStr);
+            Log.d(LOG_TAG, randomDictionaryWordsStr);
             //final String TOTAL_RESULTS = "totalResults";
 
-//            try {
-//                JSONObject jsonObject = new JSONObject(dictionaryWordsStr);
-//                int results = jsonObject.getInt(TOTAL_RESULTS);
-//                if (results ==0 ) {
-//                    Log.d(LOG_TAG, "WE FOUND IT");
-//                    Random random = new Random();
-//                    int number = random.nextInt(backupVerbs.length);
-//                    Log.d(LOG_TAG, "The number is " + number);
-//                    if (strings[0].equals("Noun")) {
-//                        dictionaryWordsStr = backupNouns[number];
-//                        return dictionaryWordsStr;
-//                    }
-//                    else if (strings[0].equals("Adjective")) {
-//                        dictionaryWordsStr = backupAdjectives[number];
-//                        return dictionaryWordsStr;
-//                    } else if (strings[0].equals("Verb")) {
-//                        dictionaryWordsStr = backupVerbs[number];
-//                        return dictionaryWordsStr;
-//                    } else if (strings[0].equals("Adverb")) {
-//                        dictionaryWordsStr = backupAdverbs[number];
-//                        return dictionaryWordsStr;
-//                    }
-//                    else {
-//                        dictionaryWordsStr = "chair";
-//                    }
-//                }
-//            } catch (JSONException e) {
-//                Log.d(LOG_TAG, "WE'RE SCREWED");
-//                return null;
-//            }
         }
         catch (MalformedURLException e){
                 Log.e("createUrl", e.getMessage());}
@@ -132,7 +98,7 @@ public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
         }
 
         try{
-            return getWordFromJSON(dictionaryWordsStr);
+            return getWordFromJSON(randomDictionaryWordsStr);
         }catch (JSONException e){
             Log.e("JSON error", e.getMessage());
         }
@@ -161,15 +127,15 @@ public class RandomizerDictionaryAPI extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        mDictionaryInterface.foundAWord(s);
+        mRandomDictionaryInterface.foundAWord(s);
 
 
     }
 
 
 
-    public void setDictionaryInterface(DictionaryInterface something){
-        this.mDictionaryInterface = something;
+    public void setRandomDictionaryInterface(DictionaryInterface something){
+        this.mRandomDictionaryInterface = something;
     }
 
     public interface DictionaryInterface{
