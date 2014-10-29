@@ -19,7 +19,7 @@ public  class TextBuilder {
     private  static Integer wordCounter = 0;
     private  static Integer keysReturned = 1;
     private static int wordSelected;
-    WordSelect mWordSelect = new WordSelect();
+    
 
 
 
@@ -65,16 +65,22 @@ public  class TextBuilder {
         getEditTextStrings().remove(wordSelected);
         getEditTextStrings().add(wordSelected, word);
     }
+    public static void replaceSwappedWordWithRandom(String word, int location){
+        getEditTextStrings().remove(location);
+        getEditTextStrings().add(location, word);
+    }
+
 
     public static void addRandomWordToArrayList(String word) {
         getEditTextStrings().add(word);
     }
 
-    public static void buildText(String nextWord) {
+    public static void buildText() {
         StringBuilder mStringBuilder = new StringBuilder();
-            mStringBuilder.append(nextWord);
-            mStringBuilder.append(" ");
-        unMaskedMessage = getUnMaskedMessage() + mStringBuilder.toString();
+        for(String word: editTextStrings){
+            mStringBuilder.append(word);
+            mStringBuilder.append(" ");}
+        unMaskedMessage =  mStringBuilder.toString();
     }
 
     public static HashMap<Integer, String> getWordMap(){
@@ -103,11 +109,11 @@ public  class TextBuilder {
             String wordToCheck = getEditTextStrings().get(i);
             Log.i("word to check", wordToCheck);
             if(wordIsMasked(wordToCheck)){
-               wordToCheck = getRandomWordFromMap(getNextKey());
+               //wordToCheck = getRandomWordFromMap(getNextKey());
+                replaceSwappedWordWithRandom(wordToCheck, i);
 
             }
-            buildText(wordToCheck);
-
+            buildText();
         }
     }
 
