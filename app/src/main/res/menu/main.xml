@@ -1,15 +1,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
-        android:id="@+id/menu"
-        android:title="@string/menu">
+    <group
+        android:id="@+id/menu_group"
+        android:checkableBehavior="single">
 
-        <menu>
-            <item
-                android:id="@+id/set_content"
-                android:title="@string/set_content" />
-        </menu>
+        <item
+            android:id="@+id/nsfw"
+            android:title="@string/dirty_words"
 
-        </item>
+        />
+
+        <item
+            android:id="@+id/sfw"
+            android:title="@string/family_friendly"
+
+            android:checked="true"
+        />
+    </group>
 
 </menu>
