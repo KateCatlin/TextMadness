@@ -12,7 +12,7 @@ import android.widget.Toast;
 import java.util.List;
 
 
-public class ShareOptions extends Activity  {
+public class ShareOptions extends Activity implements View.OnClickListener {
 
 
 
