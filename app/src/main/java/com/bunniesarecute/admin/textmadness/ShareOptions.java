@@ -1,11 +1,15 @@
 package com.bunniesarecute.admin.textmadness;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import java.util.List;
 
 
 public class ShareOptions extends Activity implements View.OnClickListener {
@@ -44,34 +48,57 @@ public class ShareOptions extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
-            case R.id.text_message_button:
-                TextMessageNextStepFragment textFrag = new TextMessageNextStepFragment();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.container, textFrag)
-                        .commit();
-                break;
+//        switch (view.getId()) {
+//            case R.id.text_message_button:
+//                TextMessageNextStepFragment textFrag = new TextMessageNextStepFragment();
+//                getFragmentManager().beginTransaction()
+//                        .replace(R.id.container, textFrag)
+//                        .commit();
+//                break;
 
-            case R.id.email_button:
+//            case R.id.email_button:
+//
+//                EmailMessageNextStepFragment emailFrag = new EmailMessageNextStepFragment();
+//                getFragmentManager().beginTransaction()
+//                        .replace(R.id.container, emailFrag)
+//                        .commit();
+//                break;
 
-                EmailMessageNextStepFragment emailFrag = new EmailMessageNextStepFragment();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.container, emailFrag)
-                        .commit();
-                break;
+//            case R.id.facebook_button:
 
-            case R.id.facebook_button:
-                popUpVersionToast();
-                break;
-
-            case R.id.twitter_button:
-                TwitterNextStepFragment twitterFrag = new TwitterNextStepFragment();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.container, twitterFrag)
-                        .commit();
-                break;
-        }
+//                Intent facebookIntent = new Intent(android.content.Intent.ACTION_SEND);
+//
+//                facebookIntent.setType("text/plain");
+//
+//                facebookIntent.putExtra(Intent.EXTRA_TEXT, getIntent().getStringExtra(MainActivity.FULL_TEXT));
+//
+//                PackageManager packManager = view.getContext().getPackageManager();
+//                List<ResolveInfo> resolvedInfoList = packManager.queryIntentActivities(facebookIntent, PackageManager.MATCH_DEFAULT_ONLY);
+//
+//                boolean resolved = false;
+//                for (ResolveInfo resolveInfo : resolvedInfoList) {
+//                    if (resolveInfo.activityInfo.packageName.startsWith("com.facebook.katana")) {
+//                        facebookIntent.setClassName(
+//                                resolveInfo.activityInfo.packageName,
+//                                resolveInfo.activityInfo.name);
+//                        resolved = true;
+//                        break;
+//                    }
+//                }
+//                if (resolved) {
+//                    startActivity(facebookIntent);
+//                } else {
+//                    Toast.makeText(view.getContext(), "Facebook app isn't found", Toast.LENGTH_LONG).show();
+//                }
+//                break;
+//
+//            case R.id.twitter_button:
+//                TwitterNextStepFragment twitterFrag = new TwitterNextStepFragment();
+//                getFragmentManager().beginTransaction()
+//                        .replace(R.id.container, twitterFrag)
+//                        .commit();
+//                break;
+//        }
 
     }
 
