@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 
-public class ShareOptions extends Activity  {
+public class ShareOptions extends Activity implements View.OnClickListener {
 
 
 
