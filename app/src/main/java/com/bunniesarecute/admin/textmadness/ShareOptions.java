@@ -15,7 +15,7 @@ public class ShareOptions extends Activity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.share_options);
-        getFragmentManager().beginTransaction().add(R.id.container, new ShareOptionsFragment());
+        getFragmentManager().beginTransaction().add(R.id.container, new ShareOptionsFragment()).commit();
 
     }
 

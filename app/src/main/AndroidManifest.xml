@@ -3,7 +3,7 @@
     package="com.bunniesarecute.admin.textmadness" >
 
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -30,15 +30,13 @@
             </intent-filter>
         </activity>
         <activity
-
             android:name=".ShareOptions"
             android:label="@string/title_activity_share_options"
-            android:parentActivityName="com.bunniesarecute.admin.textmadness.MainActivity">
+            android:parentActivityName=".MainActivity" >
         </activity>
         <activity
             android:name=".WordSelect"
             android:label="@string/title_activity_word_select" >
-
         </activity>
     </application>
 

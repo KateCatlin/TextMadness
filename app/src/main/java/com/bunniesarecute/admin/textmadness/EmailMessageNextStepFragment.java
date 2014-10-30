@@ -43,9 +43,9 @@ public class EmailMessageNextStepFragment extends Fragment {
                 intent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
                 intent.putExtra(Intent.EXTRA_TEXT, messageToSend);
                 startActivity(Intent.createChooser(intent, "send email"));
-/*                getFragmentManager().beginTransaction()
-                        .add(R.id.container, new ContinueOrNot())
-                        .commit();*/
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.container, new ContinueOrNot())
+                        .commit();
 
 
             }
