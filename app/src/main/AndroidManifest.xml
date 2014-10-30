@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -31,15 +32,13 @@
             </intent-filter>
         </activity>
         <activity
-
             android:name=".ShareOptions"
             android:label="@string/title_activity_share_options"
-            android:parentActivityName="com.bunniesarecute.admin.textmadness.MainActivity">
+            android:parentActivityName=".MainActivity" >
         </activity>
         <activity
             android:name=".WordSelect"
             android:label="@string/title_activity_word_select" >
-
         </activity>
     </application>
 
