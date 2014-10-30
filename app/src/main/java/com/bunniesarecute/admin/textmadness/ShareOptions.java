@@ -12,7 +12,7 @@ import android.widget.Toast;
 import java.util.List;
 
 
-public class ShareOptions extends Activity implements View.OnClickListener {
+public class ShareOptions extends Activity {
 
 
 
@@ -46,8 +46,8 @@ public class ShareOptions extends Activity implements View.OnClickListener {
     }
 
 
-    @Override
-    public void onClick(View view) {
+//    @Override
+//    public void onClick(View view) {
 //        switch (view.getId()) {
 //            case R.id.text_message_button:
 //                TextMessageNextStepFragment textFrag = new TextMessageNextStepFragment();
@@ -55,7 +55,7 @@ public class ShareOptions extends Activity implements View.OnClickListener {
 //                        .replace(R.id.container, textFrag)
 //                        .commit();
 //                break;
-
+//
 //            case R.id.email_button:
 //
 //                EmailMessageNextStepFragment emailFrag = new EmailMessageNextStepFragment();
@@ -63,9 +63,9 @@ public class ShareOptions extends Activity implements View.OnClickListener {
 //                        .replace(R.id.container, emailFrag)
 //                        .commit();
 //                break;
-
+//
 //            case R.id.facebook_button:
-
+//
 //                Intent facebookIntent = new Intent(android.content.Intent.ACTION_SEND);
 //
 //                facebookIntent.setType("text/plain");
@@ -102,9 +102,6 @@ public class ShareOptions extends Activity implements View.OnClickListener {
 
     }
 
-    public void popUpVersionToast(){
-        Toast.makeText(this, "Coming Soon in Version 2.Dan!", Toast.LENGTH_SHORT);
-    }
 
 
-}
+//}
