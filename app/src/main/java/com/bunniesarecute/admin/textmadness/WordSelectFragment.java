@@ -63,8 +63,6 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
 
                 posSelected = thisObject.getpOS().toLowerCase();
                 anApi.execute(posSelected);
-
-
             }
 
         });

@@ -1,6 +1,7 @@
 package com.bunniesarecute.admin.textmadness;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -85,7 +86,12 @@ public class ShareOptions extends Activity implements OnClickListener {
                 break;
 
             case R.id.twitter_button:
-                popUpVersionToast();
+                TwitterNextStepFragment twitterFrag = new TwitterNextStepFragment();
+
+                hideButtonView();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.container, twitterFrag)
+                        .commit();
                 break;
         }
 
