@@ -44,7 +44,6 @@ public class DictionaryAPI extends AsyncTask<String, Void, String> {
         try {
             String urlString = URI_BASE + partOfSpeechSelected + URI_END + API_KEY;
 
-
             urlToUse = new URL(urlString);
 
             Log.i("url", urlString);

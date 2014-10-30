@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/text_message_fragment"
@@ -13,7 +15,7 @@
 
     <TextView
         android:id="@+id/share_info_request_header"
-        android:text="@string/share_info_request_header1"
+        android:text="@string/share_info_twitter_handle"
         android:layout_marginTop="@dimen/frag_top_margin"
         android:textColor="@color/teal"
         android:textSize="19sp"
@@ -24,27 +26,17 @@
 
     <EditText
         android:id="@+id/info_enter_space"
-        android:hint="@string/share_info_text_message"
+        android:hint="Enter twitter handle here!"
         android:textColorHint="@color/light_teal"
         android:layout_marginTop="@dimen/frag_margin"
         android:layout_below="@+id/share_info_request_header"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <Button android:id="@+id/contact_lookup_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/info_enter_space"
-            android:text="@string/contact_lookup_text"
-            android:background="@color/light_grey"
-            android:textColor="@color/teal"
-            android:layout_marginTop="25dp"
-            android:layout_centerInParent="true"
-            android:padding="10dp"/>
 
     <Button
         android:id="@+id/done_button"
-        android:layout_below="@+id/contact_lookup_button"
+        android:layout_below="@+id/info_enter_space"
         android:text="@string/done_button"
         android:textColor="@color/teal"
         android:layout_marginTop="@dimen/frag_margin"

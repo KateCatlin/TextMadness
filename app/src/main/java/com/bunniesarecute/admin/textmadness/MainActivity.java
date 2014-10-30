@@ -22,6 +22,7 @@ public class MainActivity extends Activity {
 
     String mFullTextMessage = "";
     String mRandomWordFromMessage = "";
+    private boolean mDirtyWords = false;
 
     public static final int GENERATE_RANDOM_WORD_REQUEST = 37;
 
@@ -88,14 +89,18 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.nsfw:
+                setDirtyWords(true);
+                item.setChecked(true);
+                return true;
+            case R.id.sfw:
+                setDirtyWords(false);
+                item.setChecked(true);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -112,10 +117,14 @@ public class MainActivity extends Activity {
                 mainEditText.setSelection(mainEditText.length());
             }
         }
-
-
     }
 
+    public void setDirtyWords(boolean dirtyWords) {
+        mDirtyWords = dirtyWords;
+    }
 
+    public boolean getDirtyWords() {
+        return mDirtyWords;
+    }
 
 }
