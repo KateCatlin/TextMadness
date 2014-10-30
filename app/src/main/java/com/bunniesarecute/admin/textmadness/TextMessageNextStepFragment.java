@@ -23,6 +23,7 @@ public class TextMessageNextStepFragment extends Fragment {
     private EditText whereToSend;
     private String phoneNumber;
     private String messageToSend;
+
     private final int PICK_CONTACT = 42;
     ContinueOrNot cont = new ContinueOrNot();
 
@@ -50,7 +51,6 @@ public class TextMessageNextStepFragment extends Fragment {
 
                 getFragmentManager().beginTransaction()
                         .replace(R.id.container, new ContinueOrNot())
-
                         .commit();
 
             }

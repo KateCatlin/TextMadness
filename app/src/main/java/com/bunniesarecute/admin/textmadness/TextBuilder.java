@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Created by admin on 10/21/14.
@@ -12,11 +13,13 @@ public  class TextBuilder {
     private  static ArrayList<String> editTextStrings = new ArrayList<String>();
     private String mTextFromMainEditText;
     public static String unMaskedMessage = "";
+    private static Random randWordSelector = new Random();
     private  static HashMap<Integer, String> wordMap = new HashMap<Integer, String>();
     private  static ArrayList<String> listOfKeys = new ArrayList<String>();
     private  static Integer wordCounter = 0;
     private  static Integer keysReturned = 1;
-    WordSelect mWordSelect = new WordSelect();
+    private static int wordSelected;
+
 
 
 
@@ -43,24 +46,43 @@ public  class TextBuilder {
         return unMaskedMessage;
     }
 
-    public static void addTextToStringArrayList(String text) {
-        int i;
-        String[] splitText = text.split(" ");
-        for (i = 0; i < splitText.length; i++) {
-            getEditTextStrings().add(splitText[i]);
+    public static void addTextToStringArrayList(String text, int code) {
+        if(code < 1) {
+            int i;
+            String[] splitText = text.split(" ");
+            for (i = 0; i < splitText.length; i++) {
+                getEditTextStrings().add(splitText[i]);
+            }
         }
         Log.i("editText String", getEditTextStrings().toString());
     }
+
+    public static String selectRandomWordFromMessage(){
+        wordSelected = randWordSelector.nextInt(editTextStrings.size());
+        Log.i("randomNumber", String.valueOf(wordSelected));
+        return getEditTextStrings().get(wordSelected);
+    }
+
+    public static void replaceSwappedWordWithRandom(String word){
+        getEditTextStrings().remove(wordSelected);
+        getEditTextStrings().add(wordSelected, word);
+    }
+    public static void replaceSwappedWordWithRandom(String word, int location){
+        getEditTextStrings().remove(location);
+        getEditTextStrings().add(location, word);
+    }
+
 
     public static void addRandomWordToArrayList(String word) {
         getEditTextStrings().add(word);
     }
 
-    public static void buildText(String nextWord) {
+    public static void buildText() {
         StringBuilder mStringBuilder = new StringBuilder();
-            mStringBuilder.append(nextWord);
-            mStringBuilder.append(" ");
-        unMaskedMessage = getUnMaskedMessage() + mStringBuilder.toString();
+        for(String word: editTextStrings){
+            mStringBuilder.append(word);
+            mStringBuilder.append(" ");}
+        unMaskedMessage =  mStringBuilder.toString();
     }
 
     public static HashMap<Integer, String> getWordMap(){
@@ -82,7 +104,7 @@ public  class TextBuilder {
     }
 
     public static void swapOutMaskedWord(String messageFromMain){
-        addTextToStringArrayList(messageFromMain);
+        //addTextToStringArrayList(messageFromMain);
 
         for(int i = 0; i < editTextStrings.size(); i++)
         {
@@ -90,10 +112,10 @@ public  class TextBuilder {
             Log.i("word to check", wordToCheck);
             if(wordIsMasked(wordToCheck)){
                wordToCheck = getRandomWordFromMap(getNextKey());
+                replaceSwappedWordWithRandom(wordToCheck, i);
 
             }
-            buildText(wordToCheck);
-
+            buildText();
         }
     }
 
