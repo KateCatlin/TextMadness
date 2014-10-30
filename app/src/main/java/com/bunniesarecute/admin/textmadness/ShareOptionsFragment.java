@@ -1,33 +1,41 @@
 package com.bunniesarecute.admin.textmadness;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.view.Menu;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 
-public class ShareOptions extends Activity  {
-
-
-
+public class ShareOptionsFragment extends Fragment implements OnClickListener{
+    private ImageButton mTextMessageButton;
+    private ImageButton mEmailMessageButton;
+    private ImageButton mFacebookButton;
+    private ImageButton mTwitterButton;
+    private Bundle mBundle;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.share_options);
-        getFragmentManager().beginTransaction().add(R.id.container, new ShareOptionsFragment()).commit();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_share_options, container, false);
+        mTextMessageButton = (ImageButton) rootView.findViewById(R.id.text_message_button);
+        mTextMessageButton.setOnClickListener(this);
+        mEmailMessageButton = (ImageButton) rootView.findViewById(R.id.email_button);
+        mEmailMessageButton.setOnClickListener(this);
+        mFacebookButton = (ImageButton) rootView.findViewById(R.id.facebook_button);
+        mFacebookButton.setOnClickListener(this);
+        mTwitterButton = (ImageButton) rootView.findViewById(R.id.twitter_button);
+        mTwitterButton.setOnClickListener(this);
 
+        return rootView;
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.share_options, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -41,23 +49,26 @@ public class ShareOptions extends Activity  {
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void onClick(View view) {
         switch (view.getId())
         {
             case R.id.text_message_button:
                 TextMessageNextStepFragment textFrag = new TextMessageNextStepFragment();
+
                 getFragmentManager().beginTransaction()
                         .replace(R.id.container, textFrag)
+                        .addToBackStack(null)
                         .commit();
                 break;
 
             case R.id.email_button:
 
                 EmailMessageNextStepFragment emailFrag = new EmailMessageNextStepFragment();
+
                 getFragmentManager().beginTransaction()
                         .replace(R.id.container, emailFrag)
+                        .addToBackStack(null)
                         .commit();
                 break;
 
@@ -66,18 +77,16 @@ public class ShareOptions extends Activity  {
                 break;
 
             case R.id.twitter_button:
-                TwitterNextStepFragment twitterFrag = new TwitterNextStepFragment();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.container, twitterFrag)
-                        .commit();
+                popUpVersionToast();
                 break;
         }
 
     }
 
     public void popUpVersionToast(){
-        Toast.makeText(this, "Coming Soon in Version 2.Dan!", Toast.LENGTH_SHORT);
+        Toast.makeText(getActivity().getApplicationContext(), "Coming Soon in Version 2.Dan!", Toast.LENGTH_SHORT).show();
     }
+
 
 
 }
