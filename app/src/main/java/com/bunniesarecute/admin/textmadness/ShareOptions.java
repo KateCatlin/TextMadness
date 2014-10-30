@@ -1,7 +1,12 @@
 package com.bunniesarecute.admin.textmadness;
 
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,6 +14,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import java.util.List;
+
+import static android.app.PendingIntent.getActivity;
 
 
 public class ShareOptions extends Activity implements OnClickListener {
@@ -60,8 +69,7 @@ public class ShareOptions extends Activity implements OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.text_message_button:
                 TextMessageNextStepFragment textFrag = new TextMessageNextStepFragment();
 
@@ -82,7 +90,30 @@ public class ShareOptions extends Activity implements OnClickListener {
                 break;
 
             case R.id.facebook_button:
-                popUpVersionToast();
+                Intent facebookIntent = new Intent(android.content.Intent.ACTION_SEND);
+
+                facebookIntent.setType("text/plain");
+
+                facebookIntent.putExtra(Intent.EXTRA_TEXT, getIntent().getStringExtra(MainActivity.FULL_TEXT));
+
+                PackageManager packManager = view.getContext().getPackageManager();
+                List<ResolveInfo> resolvedInfoList = packManager.queryIntentActivities(facebookIntent, PackageManager.MATCH_DEFAULT_ONLY);
+
+                boolean resolved = false;
+                for (ResolveInfo resolveInfo : resolvedInfoList) {
+                    if (resolveInfo.activityInfo.packageName.startsWith("com.facebook.katana")) {
+                        facebookIntent.setClassName(
+                                resolveInfo.activityInfo.packageName,
+                                resolveInfo.activityInfo.name);
+                        resolved = true;
+                        break;
+                    }
+                }
+                if (resolved) {
+                    startActivity(facebookIntent);
+                } else {
+                    Toast.makeText(view.getContext(), "Facebook app isn't found", Toast.LENGTH_LONG).show();
+                }
                 break;
 
             case R.id.twitter_button:
