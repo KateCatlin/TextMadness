@@ -22,5 +22,7 @@
     <string name="send_again_yes">Yes</string>
     <string name="send_again_no">No</string>
     <string name="rand_button">Swap a Word</string>
+    <string name="dirty_words">Only dirty words</string>
+    <string name="family_friendly">Family Friendly</string>
 
 </resources>
