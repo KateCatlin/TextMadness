@@ -23,6 +23,7 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
     POSAdapter mAdapter;
     Random randomWordSelector;
     String posSelected;
+    private DictionaryAPI anApi = new DictionaryAPI();
 
     private static final String LOG_TAG = "WordSelectFragment";
 
@@ -50,7 +51,7 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
 
         ListView listView = (ListView) rootView.findViewById(R.id.listview);
 
-        final DictionaryAPI anApi = new DictionaryAPI();
+        //DictionaryAPI anApi = new DictionaryAPI();
 
         anApi.setDictionaryInterface(this);
 
@@ -63,8 +64,6 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
 
                 posSelected = thisObject.getpOS().toLowerCase();
                 anApi.execute(posSelected);
-
-
             }
 
         });
@@ -78,9 +77,6 @@ public class WordSelectFragment extends Fragment implements DictionaryInterface 
 
         Log.d(LOG_TAG, word);
 
-        if(word == null){
-            word = "skittles";
-        }
 
         TextBuilder.addRandomWordToMap(word);
 

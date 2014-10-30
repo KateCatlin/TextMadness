@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -37,12 +38,15 @@
         android:layout_centerHorizontal="true"
         android:gravity="top"
 
+
         android:padding="20dp"
-        android:layout_margin="10dp"
 
         android:background="@drawable/rounded_corners"
 
-        />
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
 
     <Button
         android:id="@+id/generate_word_button"
